@@ -1,17 +1,12 @@
-
 grammar MyGrammar;
 
 // rules
-myStart: expr EOF; 
-expr : '-' expr
-     | expr ('*'|'/') expr
-     | expr ('+'|'-') expr
-     | '(' expr ')'
-     | NUM
-;
-num: NUM;
-//WS: (' '|'\n'|'\t')+ -> skip;
-WS: [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+expr:	left=expr op=('*'|'/') right=expr  # OpExpr
+    |	left=expr op=('+'|'-') right=expr  # OpExpr
+    |	atom=NUMBER                        # AtomExpr
+    |	'(' expr ')'                       # ParenExpr
+    ;
 
 // tokens
-NUM: [0-9]+; 
+NUMBER: [0-9]+ ;
+WS: [ \t]+ -> skip ; // skip spaces

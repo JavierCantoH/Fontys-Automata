@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="40e56971-d009-42c6-92eb-73ff7e9048de" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammar.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammar.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammarLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammarLexer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammarLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/MyGrammarParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.antlr/cache/74af7436657db88cf7e5b4dc542376a0.atn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammar.g4" beforeDir="false" afterPath="$PROJECT_DIR$/MyGrammar.g4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammar.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammar.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammarLexer.interp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammarLexer.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammarLexer.tokens" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammarListener.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MyGrammarParser.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2IT1ZciQlkHe9nvUodcJo1LXGVA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="40e56971-d009-42c6-92eb-73ff7e9048de" name="Changes" comment="" />
+      <created>1670190816000</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670190816000</updated>
+      <workItem from="1670190817867" duration="707000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
