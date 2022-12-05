@@ -30,8 +30,8 @@ class Evaluate(MyGrammarVisitor):
             return l / r
  
 def main(argv) -> float:
-    #input_stream = FileStream("input.txt")
-    input_stream = InputStream(argv)
+    input_stream = FileStream("input.txt")
+    #input_stream = InputStream(argv)
     lexer = MyGrammarLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = MyGrammarParser(stream)
@@ -40,7 +40,8 @@ def main(argv) -> float:
     return visitor.visit(tree)
 
 if __name__ == '__main__':    
-    while True:
-        print("New line to evaluate: ", end='')
-        argv = input()
-        print(main(argv))
+    #while True:
+        # print("New line to evaluate: ", end='')
+        # argv = input()
+        # print(main(argv))
+    print(main(sys.argv))
