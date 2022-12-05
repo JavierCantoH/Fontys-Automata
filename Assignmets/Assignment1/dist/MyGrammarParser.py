@@ -74,57 +74,32 @@ class MyGrammarParser ( Parser ):
             super().copyFrom(ctx)
 
 
-    class AtomExprContext(ExprContext):
+    class NumberExprContext(ExprContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
             super().__init__(parser)
-            self.atom = None # Token
+            self.num = None # Token
             self.copyFrom(ctx)
 
         def NUMBER(self):
             return self.getToken(MyGrammarParser.NUMBER, 0)
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterAtomExpr" ):
-                listener.enterAtomExpr(self)
+            if hasattr( listener, "enterNumberExpr" ):
+                listener.enterNumberExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitAtomExpr" ):
-                listener.exitAtomExpr(self)
+            if hasattr( listener, "exitNumberExpr" ):
+                listener.exitNumberExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitAtomExpr" ):
-                return visitor.visitAtomExpr(self)
+            if hasattr( visitor, "visitNumberExpr" ):
+                return visitor.visitNumberExpr(self)
             else:
                 return visitor.visitChildren(self)
 
 
-    class ParenExprContext(ExprContext):
-
-        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
-            super().__init__(parser)
-            self.copyFrom(ctx)
-
-        def expr(self):
-            return self.getTypedRuleContext(MyGrammarParser.ExprContext,0)
-
-
-        def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterParenExpr" ):
-                listener.enterParenExpr(self)
-
-        def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitParenExpr" ):
-                listener.exitParenExpr(self)
-
-        def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitParenExpr" ):
-                return visitor.visitParenExpr(self)
-            else:
-                return visitor.visitChildren(self)
-
-
-    class OpExprContext(ExprContext):
+    class OperationExprContext(ExprContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
             super().__init__(parser)
@@ -141,16 +116,41 @@ class MyGrammarParser ( Parser ):
 
 
         def enterRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "enterOpExpr" ):
-                listener.enterOpExpr(self)
+            if hasattr( listener, "enterOperationExpr" ):
+                listener.enterOperationExpr(self)
 
         def exitRule(self, listener:ParseTreeListener):
-            if hasattr( listener, "exitOpExpr" ):
-                listener.exitOpExpr(self)
+            if hasattr( listener, "exitOperationExpr" ):
+                listener.exitOperationExpr(self)
 
         def accept(self, visitor:ParseTreeVisitor):
-            if hasattr( visitor, "visitOpExpr" ):
-                return visitor.visitOpExpr(self)
+            if hasattr( visitor, "visitOperationExpr" ):
+                return visitor.visitOperationExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class ParentExprContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def expr(self):
+            return self.getTypedRuleContext(MyGrammarParser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterParentExpr" ):
+                listener.enterParentExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitParentExpr" ):
+                listener.exitParentExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParentExpr" ):
+                return visitor.visitParentExpr(self)
             else:
                 return visitor.visitChildren(self)
 
@@ -170,15 +170,15 @@ class MyGrammarParser ( Parser ):
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [7]:
-                localctx = MyGrammarParser.AtomExprContext(self, localctx)
+                localctx = MyGrammarParser.NumberExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
                 self.state = 3
-                localctx.atom = self.match(MyGrammarParser.NUMBER)
+                localctx.num = self.match(MyGrammarParser.NUMBER)
                 pass
             elif token in [5]:
-                localctx = MyGrammarParser.ParenExprContext(self, localctx)
+                localctx = MyGrammarParser.ParentExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
                 self.state = 4
@@ -204,7 +204,7 @@ class MyGrammarParser ( Parser ):
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
                     if la_ == 1:
-                        localctx = MyGrammarParser.OpExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
+                        localctx = MyGrammarParser.OperationExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 10
@@ -224,7 +224,7 @@ class MyGrammarParser ( Parser ):
                         pass
 
                     elif la_ == 2:
-                        localctx = MyGrammarParser.OpExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
+                        localctx = MyGrammarParser.OperationExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 13

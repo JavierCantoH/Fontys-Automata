@@ -1,4 +1,3 @@
-# antlr -Dlanguage=Python3 -visitor MyGrammar.g4
 # antlr -Dlanguage=Python3 MyGrammar.g4 -visitor -o dist 
 import sys
 from antlr4 import *
@@ -7,13 +6,13 @@ from dist.MyGrammarParser import MyGrammarParser
 from dist.MyGrammarVisitor import MyGrammarVisitor
 
 class Evaluate(MyGrammarVisitor):
-    def visitAtomExpr(self, ctx:MyGrammarParser.AtomExprContext):
+    def visitNumberExpr(self, ctx:MyGrammarParser.NumberExprContext):
         return int(ctx.getText())
 
-    def visitParenExpr(self, ctx:MyGrammarParser.ParenExprContext):
+    def visitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
         return self.visit(ctx.expr())
 
-    def visitOpExpr(self, ctx:MyGrammarParser.OpExprContext):
+    def visitOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
         l = self.visit(ctx.left)
         r = self.visit(ctx.right)
 

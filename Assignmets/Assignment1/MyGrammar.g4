@@ -1,10 +1,10 @@
 grammar MyGrammar;
 
 // rules
-expr:	left=expr op=('*'|'/') right=expr  # OpExpr
-    |	left=expr op=('+'|'-') right=expr  # OpExpr
-    |	atom=NUMBER                        # AtomExpr
-    |	'(' expr ')'                       # ParenExpr
+expr:	left=expr op=('*'|'/') right=expr  # OperationExpr
+    |	left=expr op=('+'|'-') right=expr  # OperationExpr
+    |	num=NUMBER                         # NumberExpr
+    |	'(' expr ')'                       # ParentExpr
     ;
 
 // tokens

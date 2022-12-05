@@ -8,30 +8,30 @@ else:
 # This class defines a complete listener for a parse tree produced by MyGrammarParser.
 class MyGrammarListener(ParseTreeListener):
 
-    # Enter a parse tree produced by MyGrammarParser#AtomExpr.
-    def enterAtomExpr(self, ctx:MyGrammarParser.AtomExprContext):
+    # Enter a parse tree produced by MyGrammarParser#NumberExpr.
+    def enterNumberExpr(self, ctx:MyGrammarParser.NumberExprContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#AtomExpr.
-    def exitAtomExpr(self, ctx:MyGrammarParser.AtomExprContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammarParser#ParenExpr.
-    def enterParenExpr(self, ctx:MyGrammarParser.ParenExprContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammarParser#ParenExpr.
-    def exitParenExpr(self, ctx:MyGrammarParser.ParenExprContext):
+    # Exit a parse tree produced by MyGrammarParser#NumberExpr.
+    def exitNumberExpr(self, ctx:MyGrammarParser.NumberExprContext):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#OpExpr.
-    def enterOpExpr(self, ctx:MyGrammarParser.OpExprContext):
+    # Enter a parse tree produced by MyGrammarParser#OperationExpr.
+    def enterOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#OpExpr.
-    def exitOpExpr(self, ctx:MyGrammarParser.OpExprContext):
+    # Exit a parse tree produced by MyGrammarParser#OperationExpr.
+    def exitOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#ParentExpr.
+    def enterParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#ParentExpr.
+    def exitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
         pass
 
 
