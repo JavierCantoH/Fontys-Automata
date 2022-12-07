@@ -28,6 +28,14 @@ class Evaluate(MyGrammarVisitor):
                 print('divide by zero!')
                 return 0
             return l / r
+
+    def visitVariableExpr(self, ctx:MyGrammarParser.VariableExprContext):
+        return self.visitChildren(ctx)
+
+    def visitVariableAssignExpr(self, ctx:MyGrammarParser.VariableAssignExprContext):
+        return self.visitChildren(ctx)
+
+
  
 def main(argv) -> float:
     input_stream = FileStream("input.txt")

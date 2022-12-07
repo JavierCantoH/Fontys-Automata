@@ -35,5 +35,23 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MyGrammarParser#VariableExpr.
+    def enterVariableExpr(self, ctx:MyGrammarParser.VariableExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#VariableExpr.
+    def exitVariableExpr(self, ctx:MyGrammarParser.VariableExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#VariableAssignExpr.
+    def enterVariableAssignExpr(self, ctx:MyGrammarParser.VariableAssignExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#VariableAssignExpr.
+    def exitVariableAssignExpr(self, ctx:MyGrammarParser.VariableAssignExprContext):
+        pass
+
+
 
 del MyGrammarParser

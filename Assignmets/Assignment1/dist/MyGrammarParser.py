@@ -10,14 +10,15 @@ else:
 
 def serializedATN():
     return [
-        4,1,8,22,2,0,7,0,1,0,1,0,1,0,1,0,1,0,1,0,3,0,9,8,0,1,0,1,0,1,0,1,
-        0,1,0,1,0,5,0,17,8,0,10,0,12,0,20,9,0,1,0,0,1,0,1,0,0,2,1,0,1,2,
-        1,0,3,4,23,0,8,1,0,0,0,2,3,6,0,-1,0,3,9,5,7,0,0,4,5,5,5,0,0,5,6,
-        3,0,0,0,6,7,5,6,0,0,7,9,1,0,0,0,8,2,1,0,0,0,8,4,1,0,0,0,9,18,1,0,
-        0,0,10,11,10,4,0,0,11,12,7,0,0,0,12,17,3,0,0,5,13,14,10,3,0,0,14,
-        15,7,1,0,0,15,17,3,0,0,4,16,10,1,0,0,0,16,13,1,0,0,0,17,20,1,0,0,
-        0,18,16,1,0,0,0,18,19,1,0,0,0,19,1,1,0,0,0,20,18,1,0,0,0,3,8,16,
-        18
+        4,1,10,26,2,0,7,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,3,0,13,
+        8,0,1,0,1,0,1,0,1,0,1,0,1,0,5,0,21,8,0,10,0,12,0,24,9,0,1,0,0,1,
+        0,1,0,0,2,1,0,1,2,1,0,3,4,29,0,12,1,0,0,0,2,3,6,0,-1,0,3,13,5,8,
+        0,0,4,5,5,5,0,0,5,6,3,0,0,0,6,7,5,6,0,0,7,13,1,0,0,0,8,9,5,9,0,0,
+        9,10,5,7,0,0,10,13,3,0,0,2,11,13,5,9,0,0,12,2,1,0,0,0,12,4,1,0,0,
+        0,12,8,1,0,0,0,12,11,1,0,0,0,13,22,1,0,0,0,14,15,10,6,0,0,15,16,
+        7,0,0,0,16,21,3,0,0,7,17,18,10,5,0,0,18,19,7,1,0,0,19,21,3,0,0,6,
+        20,14,1,0,0,0,20,17,1,0,0,0,21,24,1,0,0,0,22,20,1,0,0,0,22,23,1,
+        0,0,0,23,1,1,0,0,0,24,22,1,0,0,0,3,12,20,22
     ]
 
 class MyGrammarParser ( Parser ):
@@ -30,10 +31,12 @@ class MyGrammarParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "'*'", "'/'", "'+'", "'-'", "'('", "')'" ]
+    literalNames = [ "<INVALID>", "'*'", "'/'", "'+'", "'-'", "'('", "')'", 
+                     "'='" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "<INVALID>", "NUMBER", "WS" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
+                      "NUMBER", "CHAR", "WS" ]
 
     RULE_expr = 0
 
@@ -46,8 +49,10 @@ class MyGrammarParser ( Parser ):
     T__3=4
     T__4=5
     T__5=6
-    NUMBER=7
-    WS=8
+    T__6=7
+    NUMBER=8
+    CHAR=9
+    WS=10
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -64,6 +69,7 @@ class MyGrammarParser ( Parser ):
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
             self.parser = parser
+            self.value = None
 
 
         def getRuleIndex(self):
@@ -72,6 +78,7 @@ class MyGrammarParser ( Parser ):
      
         def copyFrom(self, ctx:ParserRuleContext):
             super().copyFrom(ctx)
+            self.value = ctx.value
 
 
     class NumberExprContext(ExprContext):
@@ -155,6 +162,60 @@ class MyGrammarParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class VariableExprContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def CHAR(self):
+            return self.getToken(MyGrammarParser.CHAR, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterVariableExpr" ):
+                listener.enterVariableExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitVariableExpr" ):
+                listener.exitVariableExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariableExpr" ):
+                return visitor.visitVariableExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+    class VariableAssignExprContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a MyGrammarParser.ExprContext
+            super().__init__(parser)
+            self.left = None # Token
+            self.op = None # Token
+            self.right = None # ExprContext
+            self.copyFrom(ctx)
+
+        def CHAR(self):
+            return self.getToken(MyGrammarParser.CHAR, 0)
+        def expr(self):
+            return self.getTypedRuleContext(MyGrammarParser.ExprContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterVariableAssignExpr" ):
+                listener.enterVariableAssignExpr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitVariableAssignExpr" ):
+                listener.exitVariableAssignExpr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariableAssignExpr" ):
+                return visitor.visitVariableAssignExpr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
 
     def expr(self, _p:int=0):
         _parentctx = self._ctx
@@ -166,10 +227,10 @@ class MyGrammarParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 8
+            self.state = 12
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [7]:
+            la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
+            if la_ == 1:
                 localctx = MyGrammarParser.NumberExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
@@ -177,7 +238,8 @@ class MyGrammarParser ( Parser ):
                 self.state = 3
                 localctx.num = self.match(MyGrammarParser.NUMBER)
                 pass
-            elif token in [5]:
+
+            elif la_ == 2:
                 localctx = MyGrammarParser.ParentExprContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
@@ -188,11 +250,30 @@ class MyGrammarParser ( Parser ):
                 self.state = 6
                 self.match(MyGrammarParser.T__5)
                 pass
-            else:
-                raise NoViableAltException(self)
+
+            elif la_ == 3:
+                localctx = MyGrammarParser.VariableAssignExprContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 8
+                localctx.left = self.match(MyGrammarParser.CHAR)
+                self.state = 9
+                localctx.op = self.match(MyGrammarParser.T__6)
+                self.state = 10
+                localctx.right = self.expr(2)
+                pass
+
+            elif la_ == 4:
+                localctx = MyGrammarParser.VariableExprContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 11
+                self.match(MyGrammarParser.CHAR)
+                pass
+
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 18
+            self.state = 22
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -200,18 +281,18 @@ class MyGrammarParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 16
+                    self.state = 20
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
                     if la_ == 1:
                         localctx = MyGrammarParser.OperationExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 10
-                        if not self.precpred(self._ctx, 4):
+                        self.state = 14
+                        if not self.precpred(self._ctx, 6):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 11
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                        self.state = 15
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==1 or _la==2):
@@ -219,19 +300,19 @@ class MyGrammarParser ( Parser ):
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 12
-                        localctx.right = self.expr(5)
+                        self.state = 16
+                        localctx.right = self.expr(7)
                         pass
 
                     elif la_ == 2:
                         localctx = MyGrammarParser.OperationExprContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                        self.state = 13
-                        if not self.precpred(self._ctx, 3):
+                        self.state = 17
+                        if not self.precpred(self._ctx, 5):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 14
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                        self.state = 18
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
                         if not(_la==3 or _la==4):
@@ -239,12 +320,12 @@ class MyGrammarParser ( Parser ):
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
-                        self.state = 15
-                        localctx.right = self.expr(4)
+                        self.state = 19
+                        localctx.right = self.expr(6)
                         pass
 
              
-                self.state = 20
+                self.state = 24
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,2,self._ctx)
 
@@ -270,11 +351,11 @@ class MyGrammarParser ( Parser ):
 
     def expr_sempred(self, localctx:ExprContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 4)
+                return self.precpred(self._ctx, 6)
          
 
             if predIndex == 1:
-                return self.precpred(self._ctx, 3)
+                return self.precpred(self._ctx, 5)
          
 
 

@@ -24,5 +24,15 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MyGrammarParser#VariableExpr.
+    def visitVariableExpr(self, ctx:MyGrammarParser.VariableExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#VariableAssignExpr.
+    def visitVariableAssignExpr(self, ctx:MyGrammarParser.VariableAssignExprContext):
+        return self.visitChildren(ctx)
+
+
 
 del MyGrammarParser
