@@ -1,19 +1,22 @@
 grammar MyGrammar;
 
-// rules
-expr returns [int value]
-    :	left=expr op=('*'|'/') right=expr  # OperationExpr
+//rules
+
+prog: (decl | expr)+ EOF # Program;
+
+decl: ID '=' NUM # Declaration;
+
+expr:	left=expr op=('*'|'/') right=expr  # OperationExpr
     |	left=expr op=('+'|'-') right=expr  # OperationExpr
-    |	num=NUMBER                         # NumberExpr
+    |	num=NUM                            # Number
+    |   id=ID                              # Variable 
     |	'(' expr ')'                       # ParentExpr
-    |   left=CHAR op='=' right=expr        # VariableAssignExpr
-    |   CHAR                               # VariableExpr
     ;
 
-
-
 // tokens
-NUMBER: [0-9]+ ;
-CHAR: ('a'..'z'|'A'..'Z')+ ;
+NUM: [0-9]+ ;
+ID: ('a'..'z'|'A'..'Z')+ ;
 // WS: [ \t]+ -> skip ; // skip spaces
-WS : (' '|'\n'|'\t')+ -> skip; // skip spaces, tabs and new lines
+WS: (' '|'\n'|'\t')+ -> skip; // skip spaces, tabs and new lines
+//WS: ('\n'|'\t')+ -> skip; // tabs and new lines
+INT_TYPE: 'INT';

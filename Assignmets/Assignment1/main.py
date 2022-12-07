@@ -6,6 +6,42 @@ from dist.MyGrammarParser import MyGrammarParser
 from dist.MyGrammarVisitor import MyGrammarVisitor
 
 class Evaluate(MyGrammarVisitor):
+    def visitProgram(self, ctx:MyGrammarParser.ProgramContext):
+        # TODO
+        print()
+    
+    vars = []
+    def visitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
+        id = ctx.ID().getText()
+        if id in vars:
+            print(id + "already declared.")
+            return
+        else:
+            value = int(ctx.NUM().getText())
+            newTuple = (id, value)
+            vars.append(newTuple)
+            return
+    
+    def visitVariable(self, ctx:MyGrammarParser.VarExprContext):
+        id = ctx.ID().getText()
+        checkID = []
+        checkValues = []
+        index = 0
+        for identifier, value in vars:
+            checkID.append(identifier)
+            checkValues.append(value)
+            
+        if id not in vars:
+            print(id + "not declared.")
+            return
+        else:
+            for i, ID in enumerate(checkID):
+                if id == ID:
+                    index = i
+            for i, value in enumerate(checkValues):
+                if i == index:
+                    return int(value)
+        
     def visitNumberExpr(self, ctx:MyGrammarParser.NumberExprContext):
         return int(ctx.getText())
 
@@ -28,28 +64,20 @@ class Evaluate(MyGrammarVisitor):
                 print('divide by zero!')
                 return 0
             return l / r
-
-    def visitVariableExpr(self, ctx:MyGrammarParser.VariableExprContext):
-        return self.visitChildren(ctx)
-
-    def visitVariableAssignExpr(self, ctx:MyGrammarParser.VariableAssignExprContext):
-        return self.visitChildren(ctx)
-
-
  
 def main(argv) -> float:
-    input_stream = FileStream("input.txt")
+    input_stream = FileStream("input2.txt")
     #input_stream = InputStream(argv)
     lexer = MyGrammarLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = MyGrammarParser(stream)
-    tree = parser.expr()
+    tree = parser.prog()
     visitor = Evaluate()
     return visitor.visit(tree)
 
 if __name__ == '__main__':    
     #while True:
-        # print("New line to evaluate: ", end='')
-        # argv = input()
-        # print(main(argv))
+        #print("New line to evaluate: ", end='')
+        #argv = input()
+        #print(main(argv))
     print(main(sys.argv))
