@@ -8,12 +8,8 @@ from dist.MyGrammarVisitor import MyGrammarVisitor
 class Evaluate(MyGrammarVisitor):
     def visitProgram(self, ctx:MyGrammarParser.ProgramContext):
         print()
-        # # TODO
-        # for i in ctx.getChildCount():
-        #     if i == ctx.getChildCount() - 1:
-        #         print()
-        #     else:
-        #         #prog.
+        # TODO
+        
     
     vars = []
     def visitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
