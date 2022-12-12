@@ -7,8 +7,13 @@ from dist.MyGrammarVisitor import MyGrammarVisitor
 
 class Evaluate(MyGrammarVisitor):
     def visitProgram(self, ctx:MyGrammarParser.ProgramContext):
-        # TODO
         print()
+        # # TODO
+        # for i in ctx.getChildCount():
+        #     if i == ctx.getChildCount() - 1:
+        #         print()
+        #     else:
+        #         #prog.
     
     vars = []
     def visitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
@@ -22,7 +27,7 @@ class Evaluate(MyGrammarVisitor):
             vars.append(newTuple)
             return
     
-    def visitVariable(self, ctx:MyGrammarParser.VarExprContext):
+    def visitVariable(self, ctx:MyGrammarParser.VariableContext):
         id = ctx.ID().getText()
         checkID = []
         checkValues = []
@@ -42,7 +47,7 @@ class Evaluate(MyGrammarVisitor):
                 if i == index:
                     return int(value)
         
-    def visitNumberExpr(self, ctx:MyGrammarParser.NumberExprContext):
+    def visitNumberExpr(self, ctx:MyGrammarParser.NumberContext):
         return int(ctx.getText())
 
     def visitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
