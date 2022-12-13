@@ -8,57 +8,48 @@ else:
 # This class defines a complete listener for a parse tree produced by MyGrammarParser.
 class MyGrammarListener(ParseTreeListener):
 
-    # Enter a parse tree produced by MyGrammarParser#Program.
-    def enterProgram(self, ctx:MyGrammarParser.ProgramContext):
+    # Enter a parse tree produced by MyGrammarParser#numericalExpression.
+    def enterNumericalExpression(self, ctx:MyGrammarParser.NumericalExpressionContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#Program.
-    def exitProgram(self, ctx:MyGrammarParser.ProgramContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammarParser#Declaration.
-    def enterDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammarParser#Declaration.
-    def exitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
+    # Exit a parse tree produced by MyGrammarParser#numericalExpression.
+    def exitNumericalExpression(self, ctx:MyGrammarParser.NumericalExpressionContext):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#Variable.
-    def enterVariable(self, ctx:MyGrammarParser.VariableContext):
+    # Enter a parse tree produced by MyGrammarParser#variableAssignment.
+    def enterVariableAssignment(self, ctx:MyGrammarParser.VariableAssignmentContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#Variable.
-    def exitVariable(self, ctx:MyGrammarParser.VariableContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammarParser#Number.
-    def enterNumber(self, ctx:MyGrammarParser.NumberContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammarParser#Number.
-    def exitNumber(self, ctx:MyGrammarParser.NumberContext):
+    # Exit a parse tree produced by MyGrammarParser#variableAssignment.
+    def exitVariableAssignment(self, ctx:MyGrammarParser.VariableAssignmentContext):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#OperationExpr.
-    def enterOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
+    # Enter a parse tree produced by MyGrammarParser#printStatement.
+    def enterPrintStatement(self, ctx:MyGrammarParser.PrintStatementContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#OperationExpr.
-    def exitOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
+    # Exit a parse tree produced by MyGrammarParser#printStatement.
+    def exitPrintStatement(self, ctx:MyGrammarParser.PrintStatementContext):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#ParentExpr.
-    def enterParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
+    # Enter a parse tree produced by MyGrammarParser#mathematicalExpression.
+    def enterMathematicalExpression(self, ctx:MyGrammarParser.MathematicalExpressionContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#ParentExpr.
-    def exitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
+    # Exit a parse tree produced by MyGrammarParser#mathematicalExpression.
+    def exitMathematicalExpression(self, ctx:MyGrammarParser.MathematicalExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#operator.
+    def enterOperator(self, ctx:MyGrammarParser.OperatorContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#operator.
+    def exitOperator(self, ctx:MyGrammarParser.OperatorContext):
         pass
 
 

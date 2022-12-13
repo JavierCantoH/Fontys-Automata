@@ -1,4 +1,4 @@
-# Generated from MyGrammar.g4 by ANTLR 4.11.1
+# Generated from NumericalExpression.g4 by ANTLR 4.11.1
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -10,7 +10,7 @@ else:
 
 def serializedATN():
     return [
-        4,1,10,43,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,3,
+        4,1,11,43,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,1,0,1,0,1,0,3,
         0,14,8,0,1,1,1,1,1,1,1,1,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,
         3,3,30,8,3,1,3,1,3,1,3,1,3,5,3,36,8,3,10,3,12,3,39,9,3,1,4,1,4,1,
         4,0,1,6,5,0,2,4,6,8,0,1,1,0,5,8,42,0,13,1,0,0,0,2,15,1,0,0,0,4,19,
@@ -25,9 +25,9 @@ def serializedATN():
         0,0,40,41,7,0,0,0,41,9,1,0,0,0,3,13,29,37
     ]
 
-class MyGrammarParser ( Parser ):
+class NumericalExpressionParser ( Parser ):
 
-    grammarFileName = "MyGrammar.g4"
+    grammarFileName = "NumericalExpression.g4"
 
     atn = ATNDeserializer().deserialize(serializedATN())
 
@@ -40,7 +40,7 @@ class MyGrammarParser ( Parser ):
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "VariableName", "Number" ]
+                      "<INVALID>", "VariableName", "Number", "WS" ]
 
     RULE_numericalExpression = 0
     RULE_variableAssignment = 1
@@ -62,6 +62,7 @@ class MyGrammarParser ( Parser ):
     T__7=8
     VariableName=9
     Number=10
+    WS=11
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -80,19 +81,19 @@ class MyGrammarParser ( Parser ):
             self.parser = parser
 
         def variableAssignment(self):
-            return self.getTypedRuleContext(MyGrammarParser.VariableAssignmentContext,0)
+            return self.getTypedRuleContext(NumericalExpressionParser.VariableAssignmentContext,0)
 
 
         def printStatement(self):
-            return self.getTypedRuleContext(MyGrammarParser.PrintStatementContext,0)
+            return self.getTypedRuleContext(NumericalExpressionParser.PrintStatementContext,0)
 
 
         def mathematicalExpression(self):
-            return self.getTypedRuleContext(MyGrammarParser.MathematicalExpressionContext,0)
+            return self.getTypedRuleContext(NumericalExpressionParser.MathematicalExpressionContext,0)
 
 
         def getRuleIndex(self):
-            return MyGrammarParser.RULE_numericalExpression
+            return NumericalExpressionParser.RULE_numericalExpression
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterNumericalExpression" ):
@@ -113,7 +114,7 @@ class MyGrammarParser ( Parser ):
 
     def numericalExpression(self):
 
-        localctx = MyGrammarParser.NumericalExpressionContext(self, self._ctx, self.state)
+        localctx = NumericalExpressionParser.NumericalExpressionContext(self, self._ctx, self.state)
         self.enterRule(localctx, 0, self.RULE_numericalExpression)
         try:
             self.state = 13
@@ -155,14 +156,14 @@ class MyGrammarParser ( Parser ):
             self.parser = parser
 
         def VariableName(self):
-            return self.getToken(MyGrammarParser.VariableName, 0)
+            return self.getToken(NumericalExpressionParser.VariableName, 0)
 
         def mathematicalExpression(self):
-            return self.getTypedRuleContext(MyGrammarParser.MathematicalExpressionContext,0)
+            return self.getTypedRuleContext(NumericalExpressionParser.MathematicalExpressionContext,0)
 
 
         def getRuleIndex(self):
-            return MyGrammarParser.RULE_variableAssignment
+            return NumericalExpressionParser.RULE_variableAssignment
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterVariableAssignment" ):
@@ -183,14 +184,14 @@ class MyGrammarParser ( Parser ):
 
     def variableAssignment(self):
 
-        localctx = MyGrammarParser.VariableAssignmentContext(self, self._ctx, self.state)
+        localctx = NumericalExpressionParser.VariableAssignmentContext(self, self._ctx, self.state)
         self.enterRule(localctx, 2, self.RULE_variableAssignment)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 15
-            self.match(MyGrammarParser.VariableName)
+            self.match(NumericalExpressionParser.VariableName)
             self.state = 16
-            self.match(MyGrammarParser.T__0)
+            self.match(NumericalExpressionParser.T__0)
             self.state = 17
             self.mathematicalExpression(0)
         except RecognitionException as re:
@@ -210,10 +211,10 @@ class MyGrammarParser ( Parser ):
             self.parser = parser
 
         def VariableName(self):
-            return self.getToken(MyGrammarParser.VariableName, 0)
+            return self.getToken(NumericalExpressionParser.VariableName, 0)
 
         def getRuleIndex(self):
-            return MyGrammarParser.RULE_printStatement
+            return NumericalExpressionParser.RULE_printStatement
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterPrintStatement" ):
@@ -234,14 +235,14 @@ class MyGrammarParser ( Parser ):
 
     def printStatement(self):
 
-        localctx = MyGrammarParser.PrintStatementContext(self, self._ctx, self.state)
+        localctx = NumericalExpressionParser.PrintStatementContext(self, self._ctx, self.state)
         self.enterRule(localctx, 4, self.RULE_printStatement)
         try:
             self.enterOuterAlt(localctx, 1)
             self.state = 19
-            self.match(MyGrammarParser.T__1)
+            self.match(NumericalExpressionParser.T__1)
             self.state = 20
-            self.match(MyGrammarParser.VariableName)
+            self.match(NumericalExpressionParser.VariableName)
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -259,24 +260,24 @@ class MyGrammarParser ( Parser ):
             self.parser = parser
 
         def Number(self):
-            return self.getToken(MyGrammarParser.Number, 0)
+            return self.getToken(NumericalExpressionParser.Number, 0)
 
         def VariableName(self):
-            return self.getToken(MyGrammarParser.VariableName, 0)
+            return self.getToken(NumericalExpressionParser.VariableName, 0)
 
         def mathematicalExpression(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(MyGrammarParser.MathematicalExpressionContext)
+                return self.getTypedRuleContexts(NumericalExpressionParser.MathematicalExpressionContext)
             else:
-                return self.getTypedRuleContext(MyGrammarParser.MathematicalExpressionContext,i)
+                return self.getTypedRuleContext(NumericalExpressionParser.MathematicalExpressionContext,i)
 
 
         def operator(self):
-            return self.getTypedRuleContext(MyGrammarParser.OperatorContext,0)
+            return self.getTypedRuleContext(NumericalExpressionParser.OperatorContext,0)
 
 
         def getRuleIndex(self):
-            return MyGrammarParser.RULE_mathematicalExpression
+            return NumericalExpressionParser.RULE_mathematicalExpression
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterMathematicalExpression" ):
@@ -297,7 +298,7 @@ class MyGrammarParser ( Parser ):
     def mathematicalExpression(self, _p:int=0):
         _parentctx = self._ctx
         _parentState = self.state
-        localctx = MyGrammarParser.MathematicalExpressionContext(self, self._ctx, _parentState)
+        localctx = NumericalExpressionParser.MathematicalExpressionContext(self, self._ctx, _parentState)
         _prevctx = localctx
         _startState = 6
         self.enterRecursionRule(localctx, 6, self.RULE_mathematicalExpression, _p)
@@ -308,19 +309,19 @@ class MyGrammarParser ( Parser ):
             token = self._input.LA(1)
             if token in [10]:
                 self.state = 23
-                self.match(MyGrammarParser.Number)
+                self.match(NumericalExpressionParser.Number)
                 pass
             elif token in [9]:
                 self.state = 24
-                self.match(MyGrammarParser.VariableName)
+                self.match(NumericalExpressionParser.VariableName)
                 pass
             elif token in [3]:
                 self.state = 25
-                self.match(MyGrammarParser.T__2)
+                self.match(NumericalExpressionParser.T__2)
                 self.state = 26
                 self.mathematicalExpression(0)
                 self.state = 27
-                self.match(MyGrammarParser.T__3)
+                self.match(NumericalExpressionParser.T__3)
                 pass
             else:
                 raise NoViableAltException(self)
@@ -334,7 +335,7 @@ class MyGrammarParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    localctx = MyGrammarParser.MathematicalExpressionContext(self, _parentctx, _parentState)
+                    localctx = NumericalExpressionParser.MathematicalExpressionContext(self, _parentctx, _parentState)
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_mathematicalExpression)
                     self.state = 31
                     if not self.precpred(self._ctx, 2):
@@ -366,7 +367,7 @@ class MyGrammarParser ( Parser ):
 
 
         def getRuleIndex(self):
-            return MyGrammarParser.RULE_operator
+            return NumericalExpressionParser.RULE_operator
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterOperator" ):
@@ -387,7 +388,7 @@ class MyGrammarParser ( Parser ):
 
     def operator(self):
 
-        localctx = MyGrammarParser.OperatorContext(self, self._ctx, self.state)
+        localctx = NumericalExpressionParser.OperatorContext(self, self._ctx, self.state)
         self.enterRule(localctx, 8, self.RULE_operator)
         self._la = 0 # Token type
         try:

@@ -9,33 +9,28 @@ else:
 
 class MyGrammarVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by MyGrammarParser#Program.
-    def visitProgram(self, ctx:MyGrammarParser.ProgramContext):
+    # Visit a parse tree produced by MyGrammarParser#numericalExpression.
+    def visitNumericalExpression(self, ctx:MyGrammarParser.NumericalExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MyGrammarParser#Declaration.
-    def visitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
+    # Visit a parse tree produced by MyGrammarParser#variableAssignment.
+    def visitVariableAssignment(self, ctx:MyGrammarParser.VariableAssignmentContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MyGrammarParser#Variable.
-    def visitVariable(self, ctx:MyGrammarParser.VariableContext):
+    # Visit a parse tree produced by MyGrammarParser#printStatement.
+    def visitPrintStatement(self, ctx:MyGrammarParser.PrintStatementContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MyGrammarParser#Number.
-    def visitNumber(self, ctx:MyGrammarParser.NumberContext):
+    # Visit a parse tree produced by MyGrammarParser#mathematicalExpression.
+    def visitMathematicalExpression(self, ctx:MyGrammarParser.MathematicalExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MyGrammarParser#OperationExpr.
-    def visitOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MyGrammarParser#ParentExpr.
-    def visitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
+    # Visit a parse tree produced by MyGrammarParser#operator.
+    def visitOperator(self, ctx:MyGrammarParser.OperatorContext):
         return self.visitChildren(ctx)
 
 

@@ -8,6 +8,7 @@ T__6=7
 T__7=8
 VariableName=9
 Number=10
+WS=11
 '='=1
 'print'=2
 '('=3

@@ -1,4 +1,4 @@
-// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/Assignment1/MyGrammar.g4 by ANTLR 4.9.2
+// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/Assignment1/NumericalExpression.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class MyGrammarParser extends Parser {
+public class NumericalExpressionParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -17,7 +17,7 @@ public class MyGrammarParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, VariableName=9, 
-		Number=10;
+		Number=10, WS=11;
 	public static final int
 		RULE_numericalExpression = 0, RULE_variableAssignment = 1, RULE_printStatement = 2, 
 		RULE_mathematicalExpression = 3, RULE_operator = 4;
@@ -38,7 +38,7 @@ public class MyGrammarParser extends Parser {
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, "VariableName", 
-			"Number"
+			"Number", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -76,7 +76,7 @@ public class MyGrammarParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "MyGrammar.g4"; }
+	public String getGrammarFileName() { return "NumericalExpression.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -87,7 +87,7 @@ public class MyGrammarParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public MyGrammarParser(TokenStream input) {
+	public NumericalExpressionParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
@@ -150,7 +150,7 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static class VariableAssignmentContext extends ParserRuleContext {
-		public TerminalNode VariableName() { return getToken(MyGrammarParser.VariableName, 0); }
+		public TerminalNode VariableName() { return getToken(NumericalExpressionParser.VariableName, 0); }
 		public MathematicalExpressionContext mathematicalExpression() {
 			return getRuleContext(MathematicalExpressionContext.class,0);
 		}
@@ -186,7 +186,7 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static class PrintStatementContext extends ParserRuleContext {
-		public TerminalNode VariableName() { return getToken(MyGrammarParser.VariableName, 0); }
+		public TerminalNode VariableName() { return getToken(NumericalExpressionParser.VariableName, 0); }
 		public PrintStatementContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -217,8 +217,8 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static class MathematicalExpressionContext extends ParserRuleContext {
-		public TerminalNode Number() { return getToken(MyGrammarParser.Number, 0); }
-		public TerminalNode VariableName() { return getToken(MyGrammarParser.VariableName, 0); }
+		public TerminalNode Number() { return getToken(NumericalExpressionParser.Number, 0); }
+		public TerminalNode VariableName() { return getToken(NumericalExpressionParser.VariableName, 0); }
 		public List<MathematicalExpressionContext> mathematicalExpression() {
 			return getRuleContexts(MathematicalExpressionContext.class);
 		}
@@ -368,7 +368,7 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\f-\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\r-\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\2\5\2\20\n\2\3\3\3\3\3\3\3\3\3\4"+
 		"\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5 \n\5\3\5\3\5\3\5\3\5\7\5&\n\5"+
 		"\f\5\16\5)\13\5\3\6\3\6\3\6\2\3\b\7\2\4\6\b\n\2\3\3\2\7\n\2,\2\17\3\2"+
