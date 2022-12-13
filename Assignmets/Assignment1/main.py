@@ -1,84 +1,47 @@
-# antlr -Dlanguage=Python3 MyGrammar.g4 -visitor -o dist 
-import sys
+# antlr -Dlanguage=Python3 NumericalExpression.g4 -visitor -o dist 
 from antlr4 import *
-from dist.MyGrammarLexer import MyGrammarLexer
-from dist.MyGrammarParser import MyGrammarParser
-from dist.MyGrammarVisitor import MyGrammarVisitor
+from dist.NumericalExpressionLexer import NumericalExpressionLexer
+from dist.NumericalExpressionParser import NumericalExpressionParser
 
-class Evaluate(MyGrammarVisitor):
-    def visitProgram(self, ctx:MyGrammarParser.ProgramContext):
-        print()
-        # TODO
-        
-    
-    vars = []
-    def visitDeclaration(self, ctx:MyGrammarParser.DeclarationContext):
-        id = ctx.ID().getText()
-        if id in vars:
-            print(id + "already declared.")
-            return
-        else:
-            value = int(ctx.NUM().getText())
-            newTuple = (id, value)
-            vars.append(newTuple)
-            return
-    
-    def visitVariable(self, ctx:MyGrammarParser.VariableContext):
-        id = ctx.ID().getText()
-        checkID = []
-        checkValues = []
-        index = 0
-        for identifier, value in vars:
-            checkID.append(identifier)
-            checkValues.append(value)
-            
-        if id not in vars:
-            print(id + "not declared.")
-            return
-        else:
-            for i, ID in enumerate(checkID):
-                if id == ID:
-                    index = i
-            for i, value in enumerate(checkValues):
-                if i == index:
-                    return int(value)
-        
-    def visitNumberExpr(self, ctx:MyGrammarParser.NumberContext):
-        return int(ctx.getText())
+def evaluate_and_print(argv):
+  ast = parse_input_str(argv)
+  result = evaluate_ast(ast)
+  print(result)
 
-    def visitParentExpr(self, ctx:MyGrammarParser.ParentExprContext):
-        return self.visit(ctx.expr())
+def parse_input_str(argv):
+    lexer = NumericalExpressionLexer(InputStream(argv))
+    parser = NumericalExpressionParser(CommonTokenStream(lexer))
+    # Parse the input string and return the AST
+    return parser.numericalExpression()
 
-    def visitOperationExpr(self, ctx:MyGrammarParser.OperationExprContext):
-        l = self.visit(ctx.left)
-        r = self.visit(ctx.right)
+def evaluate_ast(ast):
+  if ast.getSymbolType() == NumericalExpressionParser.Number:
+    # If the AST node is a number, return its value
+    return int(ast.getText())
+  elif ast.getSymbolType() == NumericalExpressionParser.VariableName:
+    # If the AST node is a variable name, look up its value in the variable table
+    variable_name = ast.getText()
+    variable_value = variable_dictionary[variable_name]
+    return variable_value
+  elif ast.getSymbolType() == NumericalExpressionParser.mathematicalExpression:
+    # If the AST node is a mathematical expression, recursively evaluate its subexpressions
+    left = evaluate_ast(ast.getChild(0))
+    operator = ast.getChild(1).getText()
+    right = evaluate_ast(ast.getChild(2))
 
-        op = ctx.op.text
-        if op == '+':
-            return l + r
-        elif op == '-':
-            return l - r
-        elif op == '*':
-            return l * r
-        elif op == '/':
-            if r == 0:
-                print('divide by zero!')
-                return 0
-            return l / r
- 
-def main(argv) -> float:
-    input_stream = FileStream("input2.txt")
-    #input_stream = InputStream(argv)
-    lexer = MyGrammarLexer(input_stream)
-    stream = CommonTokenStream(lexer)
-    parser = MyGrammarParser(stream)
-    tree = parser.prog()
-    visitor = Evaluate()
-    return visitor.visit(tree)
+    if operator == '+':
+      return left + right
+    elif operator == '-':
+      return left - right
+    elif operator == '*':
+      return left * right
+    elif operator == '/':
+      return left / right
+
+variable_dictionary = {}
 
 if __name__ == '__main__':    
-    #while True:
-        #print("New line to evaluate: ", end='')
-        #argv = input()
-        #print(main(argv))
-    print(main(sys.argv))
+    while True:
+        print("New line: ", end='')
+        argv = input()
+        evaluate_and_print(argv)
