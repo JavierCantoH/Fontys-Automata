@@ -1,4 +1,4 @@
-grammar NumericalExpression;
+grammar MyGrammar;
 
 //rules
 

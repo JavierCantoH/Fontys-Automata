@@ -1,4 +1,4 @@
-// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/Code/NumericalExpression.g4 by ANTLR 4.9.2
+// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/Code/MyGrammar.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -87,7 +87,7 @@ public class NumericalExpressionLexer extends Lexer {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "NumericalExpression.g4"; }
+	public String getGrammarFileName() { return "MyGrammar.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }

@@ -1,38 +1,38 @@
-# antlr -Dlanguage=Python3 NumericalExpression.g4 -visitor -o dist 
+# antlr -Dlanguage=Python3 MyGrammar.g4 -visitor -o dist 
 from antlr4 import *
-from dist.NumericalExpressionLexer import NumericalExpressionLexer
-from dist.NumericalExpressionParser import NumericalExpressionParser
-from dist.NumericalExpressionVisitor import NumericalExpressionVisitor
+from dist.MyGrammarLexer import MyGrammarLexer
+from dist.MyGrammarParser import MyGrammarParser
+from dist.MyGrammarVisitor import MyGrammarVisitor
 
 variable_dictionary = {}
 
-class Evaluate(NumericalExpressionVisitor):
+class Evaluate(MyGrammarVisitor):
   
-  def visitId(self, ctx:NumericalExpressionParser.IdContext):
+  def visitId(self, ctx:MyGrammarParser.IdContext):
     id = ctx.ID().getText()  
     if id in variable_dictionary:
       value = variable_dictionary[id]
       return value
     return 0
   
-  def visitAssign(self, ctx:NumericalExpressionParser.AssignContext):
+  def visitAssign(self, ctx:MyGrammarParser.AssignContext):
     id = ctx.ID().getText()
     value = self.visit(ctx.expr()) 
     variable_dictionary[id] = value
     return value
     
-  def visitPrint(self, ctx:NumericalExpressionParser.PrintContext):
+  def visitPrint(self, ctx:MyGrammarParser.PrintContext):
     value = self.visit(ctx.expr())
     print(value)
     return 0
      
-  def visitInt(self, ctx:NumericalExpressionParser.IntContext):
+  def visitInt(self, ctx:MyGrammarParser.IntContext):
     return int(ctx.getText())
 
-  def visitParens(self, ctx:NumericalExpressionParser.ParensContext):
+  def visitParens(self, ctx:MyGrammarParser.ParensContext):
     return self.visit(ctx.expr())
 
-  def visitOperation(self, ctx:NumericalExpressionParser.OperationContext):
+  def visitOperation(self, ctx:MyGrammarParser.OperationContext):
     l = self.visit(ctx.left)
     r = self.visit(ctx.right)
 
@@ -51,9 +51,9 @@ class Evaluate(NumericalExpressionVisitor):
 
 def main():
     input_stream = FileStream("input.txt")
-    lexer = NumericalExpressionLexer(input_stream)
+    lexer = MyGrammarLexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = NumericalExpressionParser(stream)
+    parser = MyGrammarParser(stream)
     tree = parser.prog()
     visitor = Evaluate()
     return visitor.visit(tree)
