@@ -13,7 +13,7 @@ statement:  expr NEWLINE          # printLine
 expr:   left=expr op=(MUL|DIV) right=expr  # operation
     |	left=expr op=(PLUS|MIN) right=expr # operation
     |	INT                                # int
-    |   ID				                   # id
+    |   ID				   # id
     |	OPENPARENS expr CLOSINGPARENS      # parens
     ;
 
