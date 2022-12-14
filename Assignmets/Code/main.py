@@ -20,10 +20,14 @@ class Evaluate(MyGrammarVisitor):
     value = self.visit(ctx.expr()) 
     variable_dictionary[id] = value
     return value
-    
+
   def visitPrint(self, ctx:MyGrammarParser.PrintContext):
+    print(self.visitChildren(ctx))
+    return self.visitChildren(ctx)
+    
+  def visitPrintLine(self, ctx:MyGrammarParser.PrintContext):
     value = self.visit(ctx.expr())
-    print(value)
+    #print(value)
     return 0
      
   def visitInt(self, ctx:MyGrammarParser.IntContext):

@@ -2,6 +2,10 @@
 i = 5
 i + 5
 20 * 20 + i
+print i
 x = i + 1
-z = x + i / 9
-z
+print x
+z = (x + i  + 4) / 5
+print z
+print ((z+1000))
+print (5)

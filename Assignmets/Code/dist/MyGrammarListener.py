@@ -17,12 +17,12 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#print.
-    def enterPrint(self, ctx:MyGrammarParser.PrintContext):
+    # Enter a parse tree produced by MyGrammarParser#printLine.
+    def enterPrintLine(self, ctx:MyGrammarParser.PrintLineContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#print.
-    def exitPrint(self, ctx:MyGrammarParser.PrintContext):
+    # Exit a parse tree produced by MyGrammarParser#printLine.
+    def exitPrintLine(self, ctx:MyGrammarParser.PrintLineContext):
         pass
 
 
@@ -41,6 +41,15 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#blank.
     def exitBlank(self, ctx:MyGrammarParser.BlankContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#printExpr.
+    def enterPrintExpr(self, ctx:MyGrammarParser.PrintExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#printExpr.
+    def exitPrintExpr(self, ctx:MyGrammarParser.PrintExprContext):
         pass
 
 
@@ -77,6 +86,15 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#int.
     def exitInt(self, ctx:MyGrammarParser.IntContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#print.
+    def enterPrint(self, ctx:MyGrammarParser.PrintContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#print.
+    def exitPrint(self, ctx:MyGrammarParser.PrintContext):
         pass
 
 

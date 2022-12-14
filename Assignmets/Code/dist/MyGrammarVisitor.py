@@ -14,8 +14,8 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by MyGrammarParser#print.
-    def visitPrint(self, ctx:MyGrammarParser.PrintContext):
+    # Visit a parse tree produced by MyGrammarParser#printLine.
+    def visitPrintLine(self, ctx:MyGrammarParser.PrintLineContext):
         return self.visitChildren(ctx)
 
 
@@ -26,6 +26,11 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#blank.
     def visitBlank(self, ctx:MyGrammarParser.BlankContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#printExpr.
+    def visitPrintExpr(self, ctx:MyGrammarParser.PrintExprContext):
         return self.visitChildren(ctx)
 
 
@@ -46,6 +51,11 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#int.
     def visitInt(self, ctx:MyGrammarParser.IntContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#print.
+    def visitPrint(self, ctx:MyGrammarParser.PrintContext):
         return self.visitChildren(ctx)
 
 
