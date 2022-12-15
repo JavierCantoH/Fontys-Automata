@@ -34,6 +34,16 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MyGrammarParser#ifExpr.
+    def visitIfExpr(self, ctx:MyGrammarParser.IfExprContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#loopExpr.
+    def visitLoopExpr(self, ctx:MyGrammarParser.LoopExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MyGrammarParser#parens.
     def visitParens(self, ctx:MyGrammarParser.ParensContext):
         return self.visitChildren(ctx)
@@ -41,6 +51,11 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#id.
     def visitId(self, ctx:MyGrammarParser.IdContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#text.
+    def visitText(self, ctx:MyGrammarParser.TextContext):
         return self.visitChildren(ctx)
 
 
@@ -56,6 +71,16 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#print.
     def visitPrint(self, ctx:MyGrammarParser.PrintContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#loop.
+    def visitLoop(self, ctx:MyGrammarParser.LoopContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#ifStat.
+    def visitIfStat(self, ctx:MyGrammarParser.IfStatContext):
         return self.visitChildren(ctx)
 
 

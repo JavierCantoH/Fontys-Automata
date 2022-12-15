@@ -53,6 +53,24 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MyGrammarParser#ifExpr.
+    def enterIfExpr(self, ctx:MyGrammarParser.IfExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#ifExpr.
+    def exitIfExpr(self, ctx:MyGrammarParser.IfExprContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#loopExpr.
+    def enterLoopExpr(self, ctx:MyGrammarParser.LoopExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#loopExpr.
+    def exitLoopExpr(self, ctx:MyGrammarParser.LoopExprContext):
+        pass
+
+
     # Enter a parse tree produced by MyGrammarParser#parens.
     def enterParens(self, ctx:MyGrammarParser.ParensContext):
         pass
@@ -68,6 +86,15 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#id.
     def exitId(self, ctx:MyGrammarParser.IdContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#text.
+    def enterText(self, ctx:MyGrammarParser.TextContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#text.
+    def exitText(self, ctx:MyGrammarParser.TextContext):
         pass
 
 
@@ -95,6 +122,24 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#print.
     def exitPrint(self, ctx:MyGrammarParser.PrintContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#loop.
+    def enterLoop(self, ctx:MyGrammarParser.LoopContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#loop.
+    def exitLoop(self, ctx:MyGrammarParser.LoopContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#ifStat.
+    def enterIfStat(self, ctx:MyGrammarParser.IfStatContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#ifStat.
+    def exitIfStat(self, ctx:MyGrammarParser.IfStatContext):
         pass
 
 

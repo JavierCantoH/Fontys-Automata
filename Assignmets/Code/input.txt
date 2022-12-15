@@ -1,11 +1,12 @@
-5 + 5
-i = 5
-i + 5
-20 * 20 + i
-print i
-x = i + 1
+print ((100 - 50 + 200) * 50) / 5
+x = 5
 print x
-z = (x + i  + 4) / 5
-print z
-print ((z+1000))
-print (5)
+y = 2
+print y
+z = 2
+print z+10000
+print "abc"
+w = x + y +z+1
+print w
+if x then y else z fi
+while w and x do z+y-1
