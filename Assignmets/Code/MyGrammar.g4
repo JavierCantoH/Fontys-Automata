@@ -25,7 +25,7 @@ print: PRINT expr; // code in main
 
 loop: WHILE expr DO statement; // code in main
 
-ifStat: IF expr THEN statement ( ELSE statement )? FI; // code in main
+ifStat: IF expr THEN statement;  // ( ELSE statement )? FI code in main
 
 // TODO (optional!) declare variables without assginment
 

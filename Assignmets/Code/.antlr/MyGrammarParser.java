@@ -561,14 +561,9 @@ public class MyGrammarParser extends Parser {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public TerminalNode THEN() { return getToken(MyGrammarParser.THEN, 0); }
-		public List<StatementContext> statement() {
-			return getRuleContexts(StatementContext.class);
+		public StatementContext statement() {
+			return getRuleContext(StatementContext.class,0);
 		}
-		public StatementContext statement(int i) {
-			return getRuleContext(StatementContext.class,i);
-		}
-		public TerminalNode FI() { return getToken(MyGrammarParser.FI, 0); }
-		public TerminalNode ELSE() { return getToken(MyGrammarParser.ELSE, 0); }
 		public IfStatContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -578,7 +573,6 @@ public class MyGrammarParser extends Parser {
 	public final IfStatContext ifStat() throws RecognitionException {
 		IfStatContext _localctx = new IfStatContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_ifStat);
-		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -590,20 +584,6 @@ public class MyGrammarParser extends Parser {
 			match(THEN);
 			setState(66);
 			statement();
-			setState(69);
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			if (_la==ELSE) {
-				{
-				setState(67);
-				match(ELSE);
-				setState(68);
-				statement();
-				}
-			}
-
-			setState(71);
-			match(FI);
 			}
 		}
 		catch (RecognitionException re) {
@@ -637,27 +617,25 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27L\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\27G\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\6\2\20\n\2\r\2\16\2\21\3\3\3\3"+
 		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3 \n\3\3\4\3\4\3\4\3\4\3\4"+
 		"\3\4\3\4\3\4\5\4*\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4\65\n\4\f"+
 		"\4\16\48\13\4\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7"+
-		"\5\7H\n\7\3\7\3\7\3\7\2\3\6\b\2\4\6\b\n\f\2\5\3\2\21\22\3\2\23\24\3\2"+
-		"\6\7\2R\2\17\3\2\2\2\4\37\3\2\2\2\6)\3\2\2\2\b9\3\2\2\2\n<\3\2\2\2\fA"+
-		"\3\2\2\2\16\20\5\4\3\2\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22"+
-		"\3\2\2\2\22\3\3\2\2\2\23\24\5\6\4\2\24\25\7\17\2\2\25 \3\2\2\2\26\27\7"+
-		"\20\2\2\27\30\7\r\2\2\30\31\5\6\4\2\31\32\7\17\2\2\32 \3\2\2\2\33 \7\17"+
-		"\2\2\34 \5\b\5\2\35 \5\f\7\2\36 \5\n\6\2\37\23\3\2\2\2\37\26\3\2\2\2\37"+
-		"\33\3\2\2\2\37\34\3\2\2\2\37\35\3\2\2\2\37\36\3\2\2\2 \5\3\2\2\2!\"\b"+
-		"\4\1\2\"*\7\16\2\2#*\7\20\2\2$%\7\25\2\2%&\5\6\4\2&\'\7\26\2\2\'*\3\2"+
-		"\2\2(*\7\3\2\2)!\3\2\2\2)#\3\2\2\2)$\3\2\2\2)(\3\2\2\2*\66\3\2\2\2+,\f"+
-		"\t\2\2,-\t\2\2\2-\65\5\6\4\n./\f\b\2\2/\60\t\3\2\2\60\65\5\6\4\t\61\62"+
-		"\f\7\2\2\62\63\t\4\2\2\63\65\5\6\4\b\64+\3\2\2\2\64.\3\2\2\2\64\61\3\2"+
-		"\2\2\658\3\2\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67\7\3\2\2\28\66\3\2\2\2"+
-		"9:\7\f\2\2:;\5\6\4\2;\t\3\2\2\2<=\7\4\2\2=>\5\6\4\2>?\7\5\2\2?@\5\4\3"+
-		"\2@\13\3\2\2\2AB\7\b\2\2BC\5\6\4\2CD\7\t\2\2DG\5\4\3\2EF\7\n\2\2FH\5\4"+
-		"\3\2GE\3\2\2\2GH\3\2\2\2HI\3\2\2\2IJ\7\13\2\2J\r\3\2\2\2\b\21\37)\64\66"+
-		"G";
+		"\2\3\6\b\2\4\6\b\n\f\2\5\3\2\21\22\3\2\23\24\3\2\6\7\2L\2\17\3\2\2\2\4"+
+		"\37\3\2\2\2\6)\3\2\2\2\b9\3\2\2\2\n<\3\2\2\2\fA\3\2\2\2\16\20\5\4\3\2"+
+		"\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\3\3\2\2\2"+
+		"\23\24\5\6\4\2\24\25\7\17\2\2\25 \3\2\2\2\26\27\7\20\2\2\27\30\7\r\2\2"+
+		"\30\31\5\6\4\2\31\32\7\17\2\2\32 \3\2\2\2\33 \7\17\2\2\34 \5\b\5\2\35"+
+		" \5\f\7\2\36 \5\n\6\2\37\23\3\2\2\2\37\26\3\2\2\2\37\33\3\2\2\2\37\34"+
+		"\3\2\2\2\37\35\3\2\2\2\37\36\3\2\2\2 \5\3\2\2\2!\"\b\4\1\2\"*\7\16\2\2"+
+		"#*\7\20\2\2$%\7\25\2\2%&\5\6\4\2&\'\7\26\2\2\'*\3\2\2\2(*\7\3\2\2)!\3"+
+		"\2\2\2)#\3\2\2\2)$\3\2\2\2)(\3\2\2\2*\66\3\2\2\2+,\f\t\2\2,-\t\2\2\2-"+
+		"\65\5\6\4\n./\f\b\2\2/\60\t\3\2\2\60\65\5\6\4\t\61\62\f\7\2\2\62\63\t"+
+		"\4\2\2\63\65\5\6\4\b\64+\3\2\2\2\64.\3\2\2\2\64\61\3\2\2\2\658\3\2\2\2"+
+		"\66\64\3\2\2\2\66\67\3\2\2\2\67\7\3\2\2\28\66\3\2\2\29:\7\f\2\2:;\5\6"+
+		"\4\2;\t\3\2\2\2<=\7\4\2\2=>\5\6\4\2>?\7\5\2\2?@\5\4\3\2@\13\3\2\2\2AB"+
+		"\7\b\2\2BC\5\6\4\2CD\7\t\2\2DE\5\4\3\2E\r\3\2\2\2\7\21\37)\64\66";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

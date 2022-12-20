@@ -18,10 +18,10 @@ class Evaluate(MyGrammarVisitor):
   
   # TODO finish if statement
   def visitIfStat(self, ctx:MyGrammarParser.IfStatContext):
-    if ctx.expr().getText() == True:
-      self.visitChildren(ctx.statement())
+    if self.visit(ctx.expr()) == True:
+      self.visit(ctx.statement())
     else:
-      self.visitChildren(ctx.statement())
+      self.visit(ctx.statement())
   
   def visitId(self, ctx:MyGrammarParser.IdContext):
     id = ctx.ID().getText()  

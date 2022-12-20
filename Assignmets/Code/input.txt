@@ -8,5 +8,5 @@ print z+10000
 print "abc"
 w = x + y +z+1
 print w
-if x then y else z fi
+if x then y
 while w and x do z+y-1
