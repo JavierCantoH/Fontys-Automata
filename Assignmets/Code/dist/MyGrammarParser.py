@@ -10,28 +10,33 @@ else:
 
 def serializedATN():
     return [
-        4,1,21,69,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,
+        4,1,26,81,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,
         0,14,8,0,11,0,12,0,15,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
         1,1,1,3,1,30,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,40,8,2,1,2,
-        1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,5,2,51,8,2,10,2,12,2,54,9,2,1,3,
-        1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,5,1,5,1,5,1,5,1,5,1,5,0,1,4,6,0,2,
-        4,6,8,10,0,3,1,0,15,16,1,0,17,18,1,0,4,5,74,0,13,1,0,0,0,2,29,1,
-        0,0,0,4,39,1,0,0,0,6,55,1,0,0,0,8,58,1,0,0,0,10,63,1,0,0,0,12,14,
-        3,2,1,0,13,12,1,0,0,0,14,15,1,0,0,0,15,13,1,0,0,0,15,16,1,0,0,0,
-        16,1,1,0,0,0,17,18,3,4,2,0,18,19,5,13,0,0,19,30,1,0,0,0,20,21,5,
-        14,0,0,21,22,5,11,0,0,22,23,3,4,2,0,23,24,5,13,0,0,24,30,1,0,0,0,
-        25,30,5,13,0,0,26,30,3,6,3,0,27,30,3,10,5,0,28,30,3,8,4,0,29,17,
-        1,0,0,0,29,20,1,0,0,0,29,25,1,0,0,0,29,26,1,0,0,0,29,27,1,0,0,0,
-        29,28,1,0,0,0,30,3,1,0,0,0,31,32,6,2,-1,0,32,40,5,12,0,0,33,40,5,
-        14,0,0,34,35,5,19,0,0,35,36,3,4,2,0,36,37,5,20,0,0,37,40,1,0,0,0,
-        38,40,5,1,0,0,39,31,1,0,0,0,39,33,1,0,0,0,39,34,1,0,0,0,39,38,1,
-        0,0,0,40,52,1,0,0,0,41,42,10,7,0,0,42,43,7,0,0,0,43,51,3,4,2,8,44,
-        45,10,6,0,0,45,46,7,1,0,0,46,51,3,4,2,7,47,48,10,5,0,0,48,49,7,2,
-        0,0,49,51,3,4,2,6,50,41,1,0,0,0,50,44,1,0,0,0,50,47,1,0,0,0,51,54,
-        1,0,0,0,52,50,1,0,0,0,52,53,1,0,0,0,53,5,1,0,0,0,54,52,1,0,0,0,55,
-        56,5,10,0,0,56,57,3,4,2,0,57,7,1,0,0,0,58,59,5,2,0,0,59,60,3,4,2,
-        0,60,61,5,3,0,0,61,62,3,2,1,0,62,9,1,0,0,0,63,64,5,6,0,0,64,65,3,
-        4,2,0,65,66,5,7,0,0,66,67,3,2,1,0,67,11,1,0,0,0,5,15,29,39,50,52
+        1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,1,2,
+        1,2,5,2,60,8,2,10,2,12,2,63,9,2,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,4,
+        1,5,1,5,1,5,1,5,1,5,1,5,3,5,79,8,5,1,5,0,1,4,6,0,2,4,6,8,10,0,6,
+        1,0,20,21,1,0,22,23,1,0,10,11,1,0,1,2,1,0,3,4,1,0,5,6,90,0,13,1,
+        0,0,0,2,29,1,0,0,0,4,39,1,0,0,0,6,64,1,0,0,0,8,67,1,0,0,0,10,72,
+        1,0,0,0,12,14,3,2,1,0,13,12,1,0,0,0,14,15,1,0,0,0,15,13,1,0,0,0,
+        15,16,1,0,0,0,16,1,1,0,0,0,17,18,3,4,2,0,18,19,5,18,0,0,19,30,1,
+        0,0,0,20,21,5,19,0,0,21,22,5,16,0,0,22,23,3,4,2,0,23,24,5,18,0,0,
+        24,30,1,0,0,0,25,30,5,18,0,0,26,30,3,6,3,0,27,30,3,10,5,0,28,30,
+        3,8,4,0,29,17,1,0,0,0,29,20,1,0,0,0,29,25,1,0,0,0,29,26,1,0,0,0,
+        29,27,1,0,0,0,29,28,1,0,0,0,30,3,1,0,0,0,31,32,6,2,-1,0,32,40,5,
+        17,0,0,33,40,5,19,0,0,34,35,5,24,0,0,35,36,3,4,2,0,36,37,5,25,0,
+        0,37,40,1,0,0,0,38,40,5,7,0,0,39,31,1,0,0,0,39,33,1,0,0,0,39,34,
+        1,0,0,0,39,38,1,0,0,0,40,61,1,0,0,0,41,42,10,10,0,0,42,43,7,0,0,
+        0,43,60,3,4,2,11,44,45,10,9,0,0,45,46,7,1,0,0,46,60,3,4,2,10,47,
+        48,10,8,0,0,48,49,7,2,0,0,49,60,3,4,2,9,50,51,10,7,0,0,51,52,7,3,
+        0,0,52,60,3,4,2,8,53,54,10,6,0,0,54,55,7,4,0,0,55,60,3,4,2,7,56,
+        57,10,5,0,0,57,58,7,5,0,0,58,60,3,4,2,6,59,41,1,0,0,0,59,44,1,0,
+        0,0,59,47,1,0,0,0,59,50,1,0,0,0,59,53,1,0,0,0,59,56,1,0,0,0,60,63,
+        1,0,0,0,61,59,1,0,0,0,61,62,1,0,0,0,62,5,1,0,0,0,63,61,1,0,0,0,64,
+        65,5,15,0,0,65,66,3,4,2,0,66,7,1,0,0,0,67,68,5,8,0,0,68,69,3,4,2,
+        0,69,70,5,9,0,0,70,71,3,2,1,0,71,9,1,0,0,0,72,73,5,12,0,0,73,74,
+        3,4,2,0,74,75,5,13,0,0,75,78,3,2,1,0,76,77,5,14,0,0,77,79,3,2,1,
+        0,78,76,1,0,0,0,78,79,1,0,0,0,79,11,1,0,0,0,6,15,29,39,59,61,78
     ]
 
 class MyGrammarParser ( Parser ):
@@ -44,15 +49,17 @@ class MyGrammarParser ( Parser ):
 
     sharedContextCache = PredictionContextCache()
 
-    literalNames = [ "<INVALID>", "<INVALID>", "'while'", "'do'", "'and'", 
-                     "'or'", "'if'", "'then'", "'else'", "'fi'", "'print'", 
-                     "'='", "<INVALID>", "<INVALID>", "<INVALID>", "'*'", 
-                     "'/'", "'+'", "'-'", "'('", "')'" ]
+    literalNames = [ "<INVALID>", "'>'", "'<'", "'>='", "'<='", "'=='", 
+                     "'!='", "<INVALID>", "'while'", "'do'", "'and'", "'or'", 
+                     "'if'", "'then'", "'else'", "'print'", "'='", "<INVALID>", 
+                     "<INVALID>", "<INVALID>", "'*'", "'/'", "'+'", "'-'", 
+                     "'('", "')'" ]
 
-    symbolicNames = [ "<INVALID>", "TEXT", "WHILE", "DO", "AND", "OR", "IF", 
-                      "THEN", "ELSE", "FI", "PRINT", "EQUAL", "INT", "NEWLINE", 
-                      "ID", "MUL", "DIV", "PLUS", "MIN", "OPENPARENS", "CLOSINGPARENS", 
-                      "WS" ]
+    symbolicNames = [ "<INVALID>", "GREATER", "LESS", "GREATER_EQUAL", "LESS_EQUAL", 
+                      "BOOLEAN_EQUAL", "BOOLEAN_NOT_EQUAL", "TEXT", "WHILE", 
+                      "DO", "AND", "OR", "IF", "THEN", "ELSE", "PRINT", 
+                      "EQUAL", "INT", "NEWLINE", "ID", "MUL", "DIV", "PLUS", 
+                      "MIN", "OPENPARENS", "CLOSINGPARENS", "WS" ]
 
     RULE_prog = 0
     RULE_statement = 1
@@ -64,27 +71,32 @@ class MyGrammarParser ( Parser ):
     ruleNames =  [ "prog", "statement", "expr", "print", "loop", "ifStat" ]
 
     EOF = Token.EOF
-    TEXT=1
-    WHILE=2
-    DO=3
-    AND=4
-    OR=5
-    IF=6
-    THEN=7
-    ELSE=8
-    FI=9
-    PRINT=10
-    EQUAL=11
-    INT=12
-    NEWLINE=13
-    ID=14
-    MUL=15
-    DIV=16
-    PLUS=17
-    MIN=18
-    OPENPARENS=19
-    CLOSINGPARENS=20
-    WS=21
+    GREATER=1
+    LESS=2
+    GREATER_EQUAL=3
+    LESS_EQUAL=4
+    BOOLEAN_EQUAL=5
+    BOOLEAN_NOT_EQUAL=6
+    TEXT=7
+    WHILE=8
+    DO=9
+    AND=10
+    OR=11
+    IF=12
+    THEN=13
+    ELSE=14
+    PRINT=15
+    EQUAL=16
+    INT=17
+    NEWLINE=18
+    ID=19
+    MUL=20
+    DIV=21
+    PLUS=22
+    MIN=23
+    OPENPARENS=24
+    CLOSINGPARENS=25
+    WS=26
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -145,7 +157,7 @@ class MyGrammarParser ( Parser ):
                 self.state = 15 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
-                if not (((_la) & ~0x3f) == 0 and ((1 << _la) & 554054) != 0):
+                if not (((_la) & ~0x3f) == 0 and ((1 << _la) & 17731968) != 0):
                     break
 
         except RecognitionException as re:
@@ -520,6 +532,18 @@ class MyGrammarParser ( Parser ):
             return self.getToken(MyGrammarParser.AND, 0)
         def OR(self):
             return self.getToken(MyGrammarParser.OR, 0)
+        def GREATER(self):
+            return self.getToken(MyGrammarParser.GREATER, 0)
+        def LESS(self):
+            return self.getToken(MyGrammarParser.LESS, 0)
+        def GREATER_EQUAL(self):
+            return self.getToken(MyGrammarParser.GREATER_EQUAL, 0)
+        def LESS_EQUAL(self):
+            return self.getToken(MyGrammarParser.LESS_EQUAL, 0)
+        def BOOLEAN_EQUAL(self):
+            return self.getToken(MyGrammarParser.BOOLEAN_EQUAL, 0)
+        def BOOLEAN_NOT_EQUAL(self):
+            return self.getToken(MyGrammarParser.BOOLEAN_NOT_EQUAL, 0)
 
         def enterRule(self, listener:ParseTreeListener):
             if hasattr( listener, "enterOperation" ):
@@ -574,7 +598,7 @@ class MyGrammarParser ( Parser ):
             self.state = 39
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [12]:
+            if token in [17]:
                 localctx = MyGrammarParser.IntContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
@@ -582,14 +606,14 @@ class MyGrammarParser ( Parser ):
                 self.state = 32
                 self.match(MyGrammarParser.INT)
                 pass
-            elif token in [14]:
+            elif token in [19]:
                 localctx = MyGrammarParser.IdContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
                 self.state = 33
                 self.match(MyGrammarParser.ID)
                 pass
-            elif token in [19]:
+            elif token in [24]:
                 localctx = MyGrammarParser.ParensContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
@@ -600,7 +624,7 @@ class MyGrammarParser ( Parser ):
                 self.state = 36
                 self.match(MyGrammarParser.CLOSINGPARENS)
                 pass
-            elif token in [1]:
+            elif token in [7]:
                 localctx = MyGrammarParser.TextContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
@@ -611,7 +635,7 @@ class MyGrammarParser ( Parser ):
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 52
+            self.state = 61
             self._errHandler.sync(self)
             _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
@@ -619,7 +643,7 @@ class MyGrammarParser ( Parser ):
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 50
+                    self.state = 59
                     self._errHandler.sync(self)
                     la_ = self._interp.adaptivePredict(self._input,3,self._ctx)
                     if la_ == 1:
@@ -627,19 +651,19 @@ class MyGrammarParser ( Parser ):
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 41
-                        if not self.precpred(self._ctx, 7):
+                        if not self.precpred(self._ctx, 10):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 7)")
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 10)")
                         self.state = 42
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(_la==15 or _la==16):
+                        if not(_la==20 or _la==21):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
                         self.state = 43
-                        localctx.right = self.expr(8)
+                        localctx.right = self.expr(11)
                         pass
 
                     elif la_ == 2:
@@ -647,19 +671,19 @@ class MyGrammarParser ( Parser ):
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 44
-                        if not self.precpred(self._ctx, 6):
+                        if not self.precpred(self._ctx, 9):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 9)")
                         self.state = 45
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(_la==17 or _la==18):
+                        if not(_la==22 or _la==23):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
                         self.state = 46
-                        localctx.right = self.expr(7)
+                        localctx.right = self.expr(10)
                         pass
 
                     elif la_ == 3:
@@ -667,23 +691,83 @@ class MyGrammarParser ( Parser ):
                         localctx.left = _prevctx
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
                         self.state = 47
-                        if not self.precpred(self._ctx, 5):
+                        if not self.precpred(self._ctx, 8):
                             from antlr4.error.Errors import FailedPredicateException
-                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 8)")
                         self.state = 48
                         localctx.op = self._input.LT(1)
                         _la = self._input.LA(1)
-                        if not(_la==4 or _la==5):
+                        if not(_la==10 or _la==11):
                             localctx.op = self._errHandler.recoverInline(self)
                         else:
                             self._errHandler.reportMatch(self)
                             self.consume()
                         self.state = 49
+                        localctx.right = self.expr(9)
+                        pass
+
+                    elif la_ == 4:
+                        localctx = MyGrammarParser.OperationContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
+                        localctx.left = _prevctx
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
+                        self.state = 50
+                        if not self.precpred(self._ctx, 7):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 7)")
+                        self.state = 51
+                        localctx.op = self._input.LT(1)
+                        _la = self._input.LA(1)
+                        if not(_la==1 or _la==2):
+                            localctx.op = self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+                        self.state = 52
+                        localctx.right = self.expr(8)
+                        pass
+
+                    elif la_ == 5:
+                        localctx = MyGrammarParser.OperationContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
+                        localctx.left = _prevctx
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
+                        self.state = 53
+                        if not self.precpred(self._ctx, 6):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 6)")
+                        self.state = 54
+                        localctx.op = self._input.LT(1)
+                        _la = self._input.LA(1)
+                        if not(_la==3 or _la==4):
+                            localctx.op = self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+                        self.state = 55
+                        localctx.right = self.expr(7)
+                        pass
+
+                    elif la_ == 6:
+                        localctx = MyGrammarParser.OperationContext(self, MyGrammarParser.ExprContext(self, _parentctx, _parentState))
+                        localctx.left = _prevctx
+                        self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
+                        self.state = 56
+                        if not self.precpred(self._ctx, 5):
+                            from antlr4.error.Errors import FailedPredicateException
+                            raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
+                        self.state = 57
+                        localctx.op = self._input.LT(1)
+                        _la = self._input.LA(1)
+                        if not(_la==5 or _la==6):
+                            localctx.op = self._errHandler.recoverInline(self)
+                        else:
+                            self._errHandler.reportMatch(self)
+                            self.consume()
+                        self.state = 58
                         localctx.right = self.expr(6)
                         pass
 
              
-                self.state = 54
+                self.state = 63
                 self._errHandler.sync(self)
                 _alt = self._interp.adaptivePredict(self._input,4,self._ctx)
 
@@ -736,9 +820,9 @@ class MyGrammarParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_print)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 55
+            self.state = 64
             self.match(MyGrammarParser.PRINT)
-            self.state = 56
+            self.state = 65
             self.expr(0)
         except RecognitionException as re:
             localctx.exception = re
@@ -796,13 +880,13 @@ class MyGrammarParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_loop)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 58
+            self.state = 67
             self.match(MyGrammarParser.WHILE)
-            self.state = 59
+            self.state = 68
             self.expr(0)
-            self.state = 60
+            self.state = 69
             self.match(MyGrammarParser.DO)
-            self.state = 61
+            self.state = 70
             self.statement()
         except RecognitionException as re:
             localctx.exception = re
@@ -830,9 +914,15 @@ class MyGrammarParser ( Parser ):
         def THEN(self):
             return self.getToken(MyGrammarParser.THEN, 0)
 
-        def statement(self):
-            return self.getTypedRuleContext(MyGrammarParser.StatementContext,0)
+        def statement(self, i:int=None):
+            if i is None:
+                return self.getTypedRuleContexts(MyGrammarParser.StatementContext)
+            else:
+                return self.getTypedRuleContext(MyGrammarParser.StatementContext,i)
 
+
+        def ELSE(self):
+            return self.getToken(MyGrammarParser.ELSE, 0)
 
         def getRuleIndex(self):
             return MyGrammarParser.RULE_ifStat
@@ -860,14 +950,24 @@ class MyGrammarParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_ifStat)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 63
+            self.state = 72
             self.match(MyGrammarParser.IF)
-            self.state = 64
+            self.state = 73
             self.expr(0)
-            self.state = 65
+            self.state = 74
             self.match(MyGrammarParser.THEN)
-            self.state = 66
+            self.state = 75
             self.statement()
+            self.state = 78
+            self._errHandler.sync(self)
+            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            if la_ == 1:
+                self.state = 76
+                self.match(MyGrammarParser.ELSE)
+                self.state = 77
+                self.statement()
+
+
         except RecognitionException as re:
             localctx.exception = re
             self._errHandler.reportError(self, re)
@@ -890,14 +990,26 @@ class MyGrammarParser ( Parser ):
 
     def expr_sempred(self, localctx:ExprContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 7)
+                return self.precpred(self._ctx, 10)
          
 
             if predIndex == 1:
-                return self.precpred(self._ctx, 6)
+                return self.precpred(self._ctx, 9)
          
 
             if predIndex == 2:
+                return self.precpred(self._ctx, 8)
+         
+
+            if predIndex == 3:
+                return self.precpred(self._ctx, 7)
+         
+
+            if predIndex == 4:
+                return self.precpred(self._ctx, 6)
+         
+
+            if predIndex == 5:
                 return self.precpred(self._ctx, 5)
          
 

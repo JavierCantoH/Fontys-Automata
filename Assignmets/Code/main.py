@@ -11,17 +11,17 @@ class Evaluate(MyGrammarVisitor):
   def visitText(self, ctx:MyGrammarParser.TextContext):
     return ctx.getText()
   
-  # TODO finish while loop
   def visitLoop(self, ctx:MyGrammarParser.LoopContext):
-    while ctx.expr().getText() == True:
-      self.visit(ctx.statement())
+    condition = self.visit(ctx.expr())
+    while condition:
+        self.visit(ctx.statement())
+        condition = self.visit(ctx.expr())
   
-  # TODO finish if statement
   def visitIfStat(self, ctx:MyGrammarParser.IfStatContext):
     if self.visit(ctx.expr()) == True:
-      self.visit(ctx.statement())
-    else:
-      self.visit(ctx.statement())
+      self.visit(ctx.statement(0))
+    elif ctx.ELSE():
+      self.visit(ctx.statement(1))
   
   def visitId(self, ctx:MyGrammarParser.IdContext):
     id = ctx.ID().getText()  
@@ -67,17 +67,22 @@ class Evaluate(MyGrammarVisitor):
         print('Divide by zero!')
         return 0
       return l / r
-    # TODO finish and | or
     elif op == 'and':
-      if self.visit(ctx.left) and self.visit(ctx.right):
-        print("and success")
-      else:
-        print("and failed")
+      return l and r
     elif op == 'or':
-      if self.visit(ctx.left) or self.visit(ctx.right):
-        print("or success")
-      else:
-        print("or failed")
+      return l or r
+    elif op == '>':
+      return l > r
+    elif op == '<':
+      return l < r
+    elif op == '>=':
+      return l >= r
+    elif op == '<=':
+      return l <= r
+    elif op == '!=':
+      return l != r
+    elif op == '==':
+      return l == r
 
 def main():
     input_stream = FileStream("input.txt")

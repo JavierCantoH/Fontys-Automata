@@ -12,24 +12,33 @@ statement:  expr NEWLINE          # printLine // code in main
          |  loop                  # loopExpr
          ;
 
-expr:   left=expr op=(MUL|DIV) right=expr  # operation // code in main
-    |	left=expr op=(PLUS|MIN) right=expr # operation // code in main
-    |   left=expr op=(AND|OR) right=expr   # operation // code in main
-    |	INT                                # int // code in main
-    |   ID				                   # id // code in main
-    |	OPENPARENS expr CLOSINGPARENS      # parens // code in main
-    |   TEXT				               # text // code in main
+expr:   left=expr op=(MUL|DIV) right=expr                           # operation // code in main
+    |	left=expr op=(PLUS|MIN) right=expr                          # operation // code in main
+    |   left=expr op=(AND|OR) right=expr                            # operation // code in main
+    |   left=expr op=(GREATER|LESS) right=expr                      # operation // code in main
+    |   left=expr op=(GREATER_EQUAL|LESS_EQUAL) right=expr          # operation // code in main
+    |   left=expr op=(BOOLEAN_EQUAL|BOOLEAN_NOT_EQUAL) right=expr   # operation // code in main
+    |	INT                                                         # int // code in main
+    |   ID				                                            # id // code in main
+    |	OPENPARENS expr CLOSINGPARENS                               # parens // code in main
+    |   TEXT				                                        # text // code in main
     ;
 
 print: PRINT expr; // code in main
 
 loop: WHILE expr DO statement; // code in main
 
-ifStat: IF expr THEN statement;  // ( ELSE statement )? FI code in main
+ifStat: IF expr THEN statement ( ELSE statement )?;  // code in main
 
 // TODO (optional!) declare variables without assginment
 
 // tokens
+GREATER: '>';
+LESS: '<';
+GREATER_EQUAL: '>=';
+LESS_EQUAL: '<=';
+BOOLEAN_EQUAL: '==';
+BOOLEAN_NOT_EQUAL: '!=';
 TEXT: '"' ~('\r' | '\n' | '"')* '"';
 WHILE: 'while';
 DO: 'do';
@@ -38,7 +47,6 @@ OR: 'or';
 IF: 'if';
 THEN: 'then';
 ELSE: 'else';
-FI: 'fi';
 PRINT: 'print';
 EQUAL: '=';
 INT: [0-9]+;
