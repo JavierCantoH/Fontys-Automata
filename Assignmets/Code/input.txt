@@ -9,5 +9,4 @@ print "abc"
 w = x + y +z+1
 print w
 if x > 5 then print "y" else print "z"
-while w and x do print z+y-1
-
+while w and x do z+y-1
