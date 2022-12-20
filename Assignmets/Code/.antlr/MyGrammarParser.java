@@ -16,10 +16,11 @@ public class MyGrammarParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		GREATER=1, LESS=2, GREATER_EQUAL=3, LESS_EQUAL=4, BOOLEAN_EQUAL=5, BOOLEAN_NOT_EQUAL=6, 
-		TEXT=7, WHILE=8, DO=9, AND=10, OR=11, IF=12, THEN=13, ELSE=14, PRINT=15, 
-		EQUAL=16, INT=17, NEWLINE=18, ID=19, MUL=20, DIV=21, PLUS=22, MIN=23, 
-		OPENPARENS=24, CLOSINGPARENS=25, WS=26;
+		TYPE=1, SEMICOLON=2, GREATER=3, LESS=4, GREATER_EQUAL=5, LESS_EQUAL=6, 
+		BOOLEAN_EQUAL=7, BOOLEAN_NOT_EQUAL=8, TEXT=9, WHILE=10, DO=11, AND=12, 
+		OR=13, IF=14, THEN=15, ELSE=16, PRINT=17, EQUAL=18, INT=19, NEWLINE=20, 
+		ID=21, MUL=22, DIV=23, PLUS=24, MIN=25, OPENPARENS=26, CLOSINGPARENS=27, 
+		WS=28;
 	public static final int
 		RULE_prog = 0, RULE_statement = 1, RULE_expr = 2, RULE_print = 3, RULE_loop = 4, 
 		RULE_ifStat = 5;
@@ -32,18 +33,18 @@ public class MyGrammarParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", null, "'while'", 
-			"'do'", "'and'", "'or'", "'if'", "'then'", "'else'", "'print'", "'='", 
-			null, null, null, "'*'", "'/'", "'+'", "'-'", "'('", "')'"
+			null, null, "';'", "'>'", "'<'", "'>='", "'<='", "'=='", "'!='", null, 
+			"'while'", "'do'", "'and'", "'or'", "'if'", "'then'", "'else'", "'print'", 
+			"'='", null, null, null, "'*'", "'/'", "'+'", "'-'", "'('", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "GREATER", "LESS", "GREATER_EQUAL", "LESS_EQUAL", "BOOLEAN_EQUAL", 
-			"BOOLEAN_NOT_EQUAL", "TEXT", "WHILE", "DO", "AND", "OR", "IF", "THEN", 
-			"ELSE", "PRINT", "EQUAL", "INT", "NEWLINE", "ID", "MUL", "DIV", "PLUS", 
-			"MIN", "OPENPARENS", "CLOSINGPARENS", "WS"
+			null, "TYPE", "SEMICOLON", "GREATER", "LESS", "GREATER_EQUAL", "LESS_EQUAL", 
+			"BOOLEAN_EQUAL", "BOOLEAN_NOT_EQUAL", "TEXT", "WHILE", "DO", "AND", "OR", 
+			"IF", "THEN", "ELSE", "PRINT", "EQUAL", "INT", "NEWLINE", "ID", "MUL", 
+			"DIV", "PLUS", "MIN", "OPENPARENS", "CLOSINGPARENS", "WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -130,7 +131,7 @@ public class MyGrammarParser extends Parser {
 				setState(15); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TEXT) | (1L << WHILE) | (1L << IF) | (1L << PRINT) | (1L << INT) | (1L << NEWLINE) | (1L << ID) | (1L << OPENPARENS))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << TYPE) | (1L << TEXT) | (1L << WHILE) | (1L << IF) | (1L << PRINT) | (1L << INT) | (1L << NEWLINE) | (1L << ID) | (1L << OPENPARENS))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -179,12 +180,13 @@ public class MyGrammarParser extends Parser {
 		public IfExprContext(StatementContext ctx) { copyFrom(ctx); }
 	}
 	public static class AssignContext extends StatementContext {
+		public TerminalNode TYPE() { return getToken(MyGrammarParser.TYPE, 0); }
 		public TerminalNode ID() { return getToken(MyGrammarParser.ID, 0); }
+		public TerminalNode SEMICOLON() { return getToken(MyGrammarParser.SEMICOLON, 0); }
 		public TerminalNode EQUAL() { return getToken(MyGrammarParser.EQUAL, 0); }
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
-		public TerminalNode NEWLINE() { return getToken(MyGrammarParser.NEWLINE, 0); }
 		public AssignContext(StatementContext ctx) { copyFrom(ctx); }
 	}
 	public static class PrintExprContext extends StatementContext {
@@ -197,11 +199,15 @@ public class MyGrammarParser extends Parser {
 	public final StatementContext statement() throws RecognitionException {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_statement);
+		int _la;
 		try {
-			setState(29);
+			setState(31);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
-			case 1:
+			switch (_input.LA(1)) {
+			case TEXT:
+			case INT:
+			case ID:
+			case OPENPARENS:
 				_localctx = new PrintLineContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
@@ -211,52 +217,64 @@ public class MyGrammarParser extends Parser {
 				match(NEWLINE);
 				}
 				break;
-			case 2:
+			case TYPE:
 				_localctx = new AssignContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(20);
-				match(ID);
+				match(TYPE);
 				setState(21);
-				match(EQUAL);
-				setState(22);
-				expr(0);
-				setState(23);
-				match(NEWLINE);
+				match(ID);
+				setState(24);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
+				if (_la==EQUAL) {
+					{
+					setState(22);
+					match(EQUAL);
+					setState(23);
+					expr(0);
+					}
+				}
+
+				setState(26);
+				match(SEMICOLON);
 				}
 				break;
-			case 3:
+			case NEWLINE:
 				_localctx = new BlankContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(25);
+				setState(27);
 				match(NEWLINE);
 				}
 				break;
-			case 4:
+			case PRINT:
 				_localctx = new PrintExprContext(_localctx);
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(26);
+				setState(28);
 				print();
 				}
 				break;
-			case 5:
+			case IF:
 				_localctx = new IfExprContext(_localctx);
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(27);
+				setState(29);
 				ifStat();
 				}
 				break;
-			case 6:
+			case WHILE:
 				_localctx = new LoopExprContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(28);
+				setState(30);
 				loop();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -342,7 +360,7 @@ public class MyGrammarParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(39);
+			setState(41);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case INT:
@@ -351,7 +369,7 @@ public class MyGrammarParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(32);
+				setState(34);
 				match(INT);
 				}
 				break;
@@ -360,7 +378,7 @@ public class MyGrammarParser extends Parser {
 				_localctx = new IdContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(33);
+				setState(35);
 				match(ID);
 				}
 				break;
@@ -369,11 +387,11 @@ public class MyGrammarParser extends Parser {
 				_localctx = new ParensContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(34);
-				match(OPENPARENS);
-				setState(35);
-				expr(0);
 				setState(36);
+				match(OPENPARENS);
+				setState(37);
+				expr(0);
+				setState(38);
 				match(CLOSINGPARENS);
 				}
 				break;
@@ -382,7 +400,7 @@ public class MyGrammarParser extends Parser {
 				_localctx = new TextContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(38);
+				setState(40);
 				match(TEXT);
 				}
 				break;
@@ -390,25 +408,25 @@ public class MyGrammarParser extends Parser {
 				throw new NoViableAltException(this);
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(61);
+			setState(63);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(59);
+					setState(61);
 					_errHandler.sync(this);
-					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
+					switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 					case 1:
 						{
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(41);
+						setState(43);
 						if (!(precpred(_ctx, 10))) throw new FailedPredicateException(this, "precpred(_ctx, 10)");
-						setState(42);
+						setState(44);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==MUL || _la==DIV) ) {
@@ -419,7 +437,7 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(43);
+						setState(45);
 						((OperationContext)_localctx).right = expr(11);
 						}
 						break;
@@ -428,9 +446,9 @@ public class MyGrammarParser extends Parser {
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(44);
+						setState(46);
 						if (!(precpred(_ctx, 9))) throw new FailedPredicateException(this, "precpred(_ctx, 9)");
-						setState(45);
+						setState(47);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==PLUS || _la==MIN) ) {
@@ -441,7 +459,7 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(46);
+						setState(48);
 						((OperationContext)_localctx).right = expr(10);
 						}
 						break;
@@ -450,9 +468,9 @@ public class MyGrammarParser extends Parser {
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(47);
+						setState(49);
 						if (!(precpred(_ctx, 8))) throw new FailedPredicateException(this, "precpred(_ctx, 8)");
-						setState(48);
+						setState(50);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==AND || _la==OR) ) {
@@ -463,7 +481,7 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(49);
+						setState(51);
 						((OperationContext)_localctx).right = expr(9);
 						}
 						break;
@@ -472,9 +490,9 @@ public class MyGrammarParser extends Parser {
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(50);
+						setState(52);
 						if (!(precpred(_ctx, 7))) throw new FailedPredicateException(this, "precpred(_ctx, 7)");
-						setState(51);
+						setState(53);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==GREATER || _la==LESS) ) {
@@ -485,7 +503,7 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(52);
+						setState(54);
 						((OperationContext)_localctx).right = expr(8);
 						}
 						break;
@@ -494,9 +512,9 @@ public class MyGrammarParser extends Parser {
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(53);
+						setState(55);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
-						setState(54);
+						setState(56);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==GREATER_EQUAL || _la==LESS_EQUAL) ) {
@@ -507,7 +525,7 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(55);
+						setState(57);
 						((OperationContext)_localctx).right = expr(7);
 						}
 						break;
@@ -516,9 +534,9 @@ public class MyGrammarParser extends Parser {
 						_localctx = new OperationContext(new ExprContext(_parentctx, _parentState));
 						((OperationContext)_localctx).left = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_expr);
-						setState(56);
+						setState(58);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
-						setState(57);
+						setState(59);
 						((OperationContext)_localctx).op = _input.LT(1);
 						_la = _input.LA(1);
 						if ( !(_la==BOOLEAN_EQUAL || _la==BOOLEAN_NOT_EQUAL) ) {
@@ -529,16 +547,16 @@ public class MyGrammarParser extends Parser {
 							_errHandler.reportMatch(this);
 							consume();
 						}
-						setState(58);
+						setState(60);
 						((OperationContext)_localctx).right = expr(6);
 						}
 						break;
 					}
 					} 
 				}
-				setState(63);
+				setState(65);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,4,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 			}
 			}
 		}
@@ -570,9 +588,9 @@ public class MyGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(64);
+			setState(66);
 			match(PRINT);
-			setState(65);
+			setState(67);
 			expr(0);
 			}
 		}
@@ -608,13 +626,13 @@ public class MyGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(67);
-			match(WHILE);
-			setState(68);
-			expr(0);
 			setState(69);
-			match(DO);
+			match(WHILE);
 			setState(70);
+			expr(0);
+			setState(71);
+			match(DO);
+			setState(72);
 			statement();
 			}
 		}
@@ -654,22 +672,22 @@ public class MyGrammarParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(72);
-			match(IF);
-			setState(73);
-			expr(0);
 			setState(74);
-			match(THEN);
+			match(IF);
 			setState(75);
+			expr(0);
+			setState(76);
+			match(THEN);
+			setState(77);
 			statement();
-			setState(78);
+			setState(80);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,5,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				{
-				setState(76);
+				setState(78);
 				match(ELSE);
-				setState(77);
+				setState(79);
 				statement();
 				}
 				break;
@@ -713,29 +731,29 @@ public class MyGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\34S\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\36U\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\6\2\20\n\2\r\2\16\2\21\3\3\3\3"+
-		"\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\3\5\3 \n\3\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\5\4*\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
-		"\3\4\3\4\3\4\3\4\3\4\3\4\7\4>\n\4\f\4\16\4A\13\4\3\5\3\5\3\5\3\6\3\6\3"+
-		"\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7Q\n\7\3\7\2\3\6\b\2\4\6\b\n\f\2"+
-		"\b\3\2\26\27\3\2\30\31\3\2\f\r\3\2\3\4\3\2\5\6\3\2\7\b\2\\\2\17\3\2\2"+
-		"\2\4\37\3\2\2\2\6)\3\2\2\2\bB\3\2\2\2\nE\3\2\2\2\fJ\3\2\2\2\16\20\5\4"+
-		"\3\2\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2\22\3\3\2"+
-		"\2\2\23\24\5\6\4\2\24\25\7\24\2\2\25 \3\2\2\2\26\27\7\25\2\2\27\30\7\22"+
-		"\2\2\30\31\5\6\4\2\31\32\7\24\2\2\32 \3\2\2\2\33 \7\24\2\2\34 \5\b\5\2"+
-		"\35 \5\f\7\2\36 \5\n\6\2\37\23\3\2\2\2\37\26\3\2\2\2\37\33\3\2\2\2\37"+
-		"\34\3\2\2\2\37\35\3\2\2\2\37\36\3\2\2\2 \5\3\2\2\2!\"\b\4\1\2\"*\7\23"+
-		"\2\2#*\7\25\2\2$%\7\32\2\2%&\5\6\4\2&\'\7\33\2\2\'*\3\2\2\2(*\7\t\2\2"+
-		")!\3\2\2\2)#\3\2\2\2)$\3\2\2\2)(\3\2\2\2*?\3\2\2\2+,\f\f\2\2,-\t\2\2\2"+
-		"->\5\6\4\r./\f\13\2\2/\60\t\3\2\2\60>\5\6\4\f\61\62\f\n\2\2\62\63\t\4"+
-		"\2\2\63>\5\6\4\13\64\65\f\t\2\2\65\66\t\5\2\2\66>\5\6\4\n\678\f\b\2\2"+
-		"89\t\6\2\29>\5\6\4\t:;\f\7\2\2;<\t\7\2\2<>\5\6\4\b=+\3\2\2\2=.\3\2\2\2"+
-		"=\61\3\2\2\2=\64\3\2\2\2=\67\3\2\2\2=:\3\2\2\2>A\3\2\2\2?=\3\2\2\2?@\3"+
-		"\2\2\2@\7\3\2\2\2A?\3\2\2\2BC\7\21\2\2CD\5\6\4\2D\t\3\2\2\2EF\7\n\2\2"+
-		"FG\5\6\4\2GH\7\13\2\2HI\5\4\3\2I\13\3\2\2\2JK\7\16\2\2KL\5\6\4\2LM\7\17"+
-		"\2\2MP\5\4\3\2NO\7\20\2\2OQ\5\4\3\2PN\3\2\2\2PQ\3\2\2\2Q\r\3\2\2\2\b\21"+
-		"\37)=?P";
+		"\3\3\3\3\3\3\3\3\3\3\5\3\33\n\3\3\3\3\3\3\3\3\3\3\3\5\3\"\n\3\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\3\4\3\4\5\4,\n\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4"+
+		"\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\7\4@\n\4\f\4\16\4C\13\4\3\5\3\5\3"+
+		"\5\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7S\n\7\3\7\2\3\6\b\2"+
+		"\4\6\b\n\f\2\b\3\2\30\31\3\2\32\33\3\2\16\17\3\2\5\6\3\2\7\b\3\2\t\n\2"+
+		"_\2\17\3\2\2\2\4!\3\2\2\2\6+\3\2\2\2\bD\3\2\2\2\nG\3\2\2\2\fL\3\2\2\2"+
+		"\16\20\5\4\3\2\17\16\3\2\2\2\20\21\3\2\2\2\21\17\3\2\2\2\21\22\3\2\2\2"+
+		"\22\3\3\2\2\2\23\24\5\6\4\2\24\25\7\26\2\2\25\"\3\2\2\2\26\27\7\3\2\2"+
+		"\27\32\7\27\2\2\30\31\7\24\2\2\31\33\5\6\4\2\32\30\3\2\2\2\32\33\3\2\2"+
+		"\2\33\34\3\2\2\2\34\"\7\4\2\2\35\"\7\26\2\2\36\"\5\b\5\2\37\"\5\f\7\2"+
+		" \"\5\n\6\2!\23\3\2\2\2!\26\3\2\2\2!\35\3\2\2\2!\36\3\2\2\2!\37\3\2\2"+
+		"\2! \3\2\2\2\"\5\3\2\2\2#$\b\4\1\2$,\7\25\2\2%,\7\27\2\2&\'\7\34\2\2\'"+
+		"(\5\6\4\2()\7\35\2\2),\3\2\2\2*,\7\13\2\2+#\3\2\2\2+%\3\2\2\2+&\3\2\2"+
+		"\2+*\3\2\2\2,A\3\2\2\2-.\f\f\2\2./\t\2\2\2/@\5\6\4\r\60\61\f\13\2\2\61"+
+		"\62\t\3\2\2\62@\5\6\4\f\63\64\f\n\2\2\64\65\t\4\2\2\65@\5\6\4\13\66\67"+
+		"\f\t\2\2\678\t\5\2\28@\5\6\4\n9:\f\b\2\2:;\t\6\2\2;@\5\6\4\t<=\f\7\2\2"+
+		"=>\t\7\2\2>@\5\6\4\b?-\3\2\2\2?\60\3\2\2\2?\63\3\2\2\2?\66\3\2\2\2?9\3"+
+		"\2\2\2?<\3\2\2\2@C\3\2\2\2A?\3\2\2\2AB\3\2\2\2B\7\3\2\2\2CA\3\2\2\2DE"+
+		"\7\23\2\2EF\5\6\4\2F\t\3\2\2\2GH\7\f\2\2HI\5\6\4\2IJ\7\r\2\2JK\5\4\3\2"+
+		"K\13\3\2\2\2LM\7\20\2\2MN\5\6\4\2NO\7\21\2\2OR\5\4\3\2PQ\7\22\2\2QS\5"+
+		"\4\3\2RP\3\2\2\2RS\3\2\2\2S\r\3\2\2\2\t\21\32!+?AR";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
