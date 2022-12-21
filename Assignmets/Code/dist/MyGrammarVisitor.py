@@ -14,6 +14,21 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MyGrammarParser#functionDeclaration.
+    def visitFunctionDeclaration(self, ctx:MyGrammarParser.FunctionDeclarationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#returnFunc.
+    def visitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#callingFunc.
+    def visitCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MyGrammarParser#printLine.
     def visitPrintLine(self, ctx:MyGrammarParser.PrintLineContext):
         return self.visitChildren(ctx)
@@ -71,6 +86,36 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#operation.
     def visitOperation(self, ctx:MyGrammarParser.OperationContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#exprFuncCall.
+    def visitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#functionDecl.
+    def visitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#block.
+    def visitBlock(self, ctx:MyGrammarParser.BlockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#formalParameters.
+    def visitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#formalParameter.
+    def visitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by MyGrammarParser#exprList.
+    def visitExprList(self, ctx:MyGrammarParser.ExprListContext):
         return self.visitChildren(ctx)
 
 

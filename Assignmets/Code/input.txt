@@ -5,3 +5,9 @@ print x
 print y
 float y = 10.9;
 print y
+
+
+int sum(int x, int y){
+    int z = x + y;
+    return z;
+}

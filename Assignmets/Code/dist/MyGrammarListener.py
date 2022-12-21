@@ -17,6 +17,33 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MyGrammarParser#functionDeclaration.
+    def enterFunctionDeclaration(self, ctx:MyGrammarParser.FunctionDeclarationContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#functionDeclaration.
+    def exitFunctionDeclaration(self, ctx:MyGrammarParser.FunctionDeclarationContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#returnFunc.
+    def enterReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#returnFunc.
+    def exitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#callingFunc.
+    def enterCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#callingFunc.
+    def exitCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
+        pass
+
+
     # Enter a parse tree produced by MyGrammarParser#printLine.
     def enterPrintLine(self, ctx:MyGrammarParser.PrintLineContext):
         pass
@@ -122,6 +149,60 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#operation.
     def exitOperation(self, ctx:MyGrammarParser.OperationContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#exprFuncCall.
+    def enterExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#exprFuncCall.
+    def exitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#functionDecl.
+    def enterFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#functionDecl.
+    def exitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#block.
+    def enterBlock(self, ctx:MyGrammarParser.BlockContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#block.
+    def exitBlock(self, ctx:MyGrammarParser.BlockContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#formalParameters.
+    def enterFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#formalParameters.
+    def exitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#formalParameter.
+    def enterFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#formalParameter.
+    def exitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+        pass
+
+
+    # Enter a parse tree produced by MyGrammarParser#exprList.
+    def enterExprList(self, ctx:MyGrammarParser.ExprListContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#exprList.
+    def exitExprList(self, ctx:MyGrammarParser.ExprListContext):
         pass
 
 
