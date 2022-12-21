@@ -24,6 +24,11 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MyGrammarParser#assignExpr.
+    def visitAssignExpr(self, ctx:MyGrammarParser.AssignExprContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MyGrammarParser#blank.
     def visitBlank(self, ctx:MyGrammarParser.BlankContext):
         return self.visitChildren(ctx)
@@ -44,6 +49,11 @@ class MyGrammarVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by MyGrammarParser#number.
+    def visitNumber(self, ctx:MyGrammarParser.NumberContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by MyGrammarParser#parens.
     def visitParens(self, ctx:MyGrammarParser.ParensContext):
         return self.visitChildren(ctx)
@@ -61,11 +71,6 @@ class MyGrammarVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by MyGrammarParser#operation.
     def visitOperation(self, ctx:MyGrammarParser.OperationContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by MyGrammarParser#int.
-    def visitInt(self, ctx:MyGrammarParser.IntContext):
         return self.visitChildren(ctx)
 
 

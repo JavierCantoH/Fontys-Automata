@@ -28,13 +28,28 @@ class Evaluate(MyGrammarVisitor):
     if id in variable_dictionary:
       value = variable_dictionary[id]
       return value
-    return 0
+    return None
+
+  def visitAssignExpr(self, ctx:MyGrammarParser.AssignExprContext):
+    id = ctx.ID().getText()
+    if id in variable_dictionary:
+      value = self.visit(ctx.expr()) 
+      variable_dictionary[id] = value
+    else:
+      print("please specify the variable type")
   
   def visitAssign(self, ctx:MyGrammarParser.AssignContext):
     id = ctx.ID().getText()
-    value = self.visit(ctx.expr()) 
-    variable_dictionary[id] = value
-    return value
+    
+    if ctx.EQUAL() and (ctx.TYPE().getText() == 'int' or ctx.TYPE().getText() == 'float'):
+        value = self.visit(ctx.expr()) 
+        variable_dictionary[id] = value
+    elif ctx.TYPE().getText() == 'void':
+      # TODO week 4 fuctions 
+      print("void")
+    else:
+      variable_dictionary[id] = None
+    return 0
 
   def visitPrint(self, ctx:MyGrammarParser.PrintContext):
     print(self.visitChildren(ctx))
@@ -45,8 +60,11 @@ class Evaluate(MyGrammarVisitor):
     #print(value)
     return 0
      
-  def visitInt(self, ctx:MyGrammarParser.IntContext):
-    return int(ctx.getText())
+  def visitNumber(self, ctx:MyGrammarParser.NumberContext):
+    if ctx.INT():
+      return int(ctx.getText())
+    else:
+      return float(ctx.getText())
 
   def visitParens(self, ctx:MyGrammarParser.ParensContext):
     return self.visit(ctx.expr())

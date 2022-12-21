@@ -1,12 +1,7 @@
-print ((100 - 50 + 200) * 50) / 5
-x = 5
+int x ;
 print x
-y = 2
+x = 5;
+print x
 print y
-z = 2
-print z+10000
-print "abc"
-w = x + y +z+1
-print w
-if x > 5 then print "y" else print "z"
-while w and x do z+y-1
+float y = 10.9;
+print y

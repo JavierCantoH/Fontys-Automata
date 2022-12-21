@@ -4,12 +4,13 @@ grammar MyGrammar;
 
 prog: statement+;
 
-statement:  expr NEWLINE          # printLine // code in main
-         |  ID EQUAL expr NEWLINE # assign // code in main
-         |  NEWLINE               # blank
-         |  print                 # printExpr 
-         |  ifStat                # ifExpr
-         |  loop                  # loopExpr
+statement:  expr NEWLINE                        # printLine // code in main
+         |  TYPE ID ( EQUAL expr )? SEMICOLON   # assign // code in main
+         |  ID EQUAL expr SEMICOLON             # assignExpr // code in main
+         |  NEWLINE                             # blank
+         |  print                               # printExpr 
+         |  ifStat                              # ifExpr
+         |  loop                                # loopExpr
          ;
 
 expr:   left=expr op=(MUL|DIV) right=expr                           # operation // code in main
@@ -18,7 +19,7 @@ expr:   left=expr op=(MUL|DIV) right=expr                           # operation 
     |   left=expr op=(GREATER|LESS) right=expr                      # operation // code in main
     |   left=expr op=(GREATER_EQUAL|LESS_EQUAL) right=expr          # operation // code in main
     |   left=expr op=(BOOLEAN_EQUAL|BOOLEAN_NOT_EQUAL) right=expr   # operation // code in main
-    |	INT                                                         # int // code in main
+    |	( INT | FLOAT )                                             # number // code in main
     |   ID				                                            # id // code in main
     |	OPENPARENS expr CLOSINGPARENS                               # parens // code in main
     |   TEXT				                                        # text // code in main
@@ -30,9 +31,9 @@ loop: WHILE expr DO statement; // code in main
 
 ifStat: IF expr THEN statement ( ELSE statement )?;  // code in main
 
-// TODO (optional!) declare variables without assginment
-
 // tokens
+TYPE: 'float' | 'int' | 'void' ;
+SEMICOLON: ';';
 GREATER: '>';
 LESS: '<';
 GREATER_EQUAL: '>=';
@@ -50,6 +51,7 @@ ELSE: 'else';
 PRINT: 'print';
 EQUAL: '=';
 INT: [0-9]+;
+FLOAT  : '-'? INT '.' INT ;
 NEWLINE:'\r'? '\n';
 ID: [a-zA-Z]+; 
 MUL: '*';

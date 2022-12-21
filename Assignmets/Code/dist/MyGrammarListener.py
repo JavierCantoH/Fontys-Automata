@@ -35,6 +35,15 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MyGrammarParser#assignExpr.
+    def enterAssignExpr(self, ctx:MyGrammarParser.AssignExprContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#assignExpr.
+    def exitAssignExpr(self, ctx:MyGrammarParser.AssignExprContext):
+        pass
+
+
     # Enter a parse tree produced by MyGrammarParser#blank.
     def enterBlank(self, ctx:MyGrammarParser.BlankContext):
         pass
@@ -71,6 +80,15 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by MyGrammarParser#number.
+    def enterNumber(self, ctx:MyGrammarParser.NumberContext):
+        pass
+
+    # Exit a parse tree produced by MyGrammarParser#number.
+    def exitNumber(self, ctx:MyGrammarParser.NumberContext):
+        pass
+
+
     # Enter a parse tree produced by MyGrammarParser#parens.
     def enterParens(self, ctx:MyGrammarParser.ParensContext):
         pass
@@ -104,15 +122,6 @@ class MyGrammarListener(ParseTreeListener):
 
     # Exit a parse tree produced by MyGrammarParser#operation.
     def exitOperation(self, ctx:MyGrammarParser.OperationContext):
-        pass
-
-
-    # Enter a parse tree produced by MyGrammarParser#int.
-    def enterInt(self, ctx:MyGrammarParser.IntContext):
-        pass
-
-    # Exit a parse tree produced by MyGrammarParser#int.
-    def exitInt(self, ctx:MyGrammarParser.IntContext):
         pass
 
 
