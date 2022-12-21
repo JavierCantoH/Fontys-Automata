@@ -6,7 +6,37 @@ from dist.MyGrammarVisitor import MyGrammarVisitor
 
 variable_dictionary = {}
 
+# int sum(int x, int y){
+#     double z = x + y;
+#     return z;
+# }
+
+# sum(5, 10.5)
+
 class Evaluate(MyGrammarVisitor):
+  
+  def visitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
+    type = ctx.TYPE().getText()
+    id = ctx.ID().getText()
+    
+    if type == 'int':
+      self.visit(ctx.block())
+    elif type == 'void':
+    
+    elif type == 'double':
+      
+  
+  # def visitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
+  
+  # def visitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+    
+  # def visitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
+    
+  # def visitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+  
+  # def visitExprList(self, ctx:MyGrammarParser.ExprListContext):
+  
+  
   
   def visitText(self, ctx:MyGrammarParser.TextContext):
     return ctx.getText()
@@ -44,9 +74,6 @@ class Evaluate(MyGrammarVisitor):
     if ctx.EQUAL() and (ctx.TYPE().getText() == 'int' or ctx.TYPE().getText() == 'float'):
         value = self.visit(ctx.expr()) 
         variable_dictionary[id] = value
-    elif ctx.TYPE().getText() == 'void':
-      # TODO week 4 fuctions 
-      print("void")
     else:
       variable_dictionary[id] = None
     return 0
