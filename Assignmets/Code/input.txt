@@ -5,9 +5,8 @@ print x
 print y
 float y = 10.9;
 print y
-
-
-int sum(int x, int y){
-    int z = x + y;
+int sum(int e, int t){
+    int z = e + t;
     return z;
 }
+print sum(10, 5)

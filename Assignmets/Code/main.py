@@ -16,27 +16,58 @@ variable_dictionary = {}
 class Evaluate(MyGrammarVisitor):
   
   def visitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
-    type = ctx.TYPE().getText()
-    id = ctx.ID().getText()
-    
-    if type == 'int':
-      self.visit(ctx.block())
-    elif type == 'void':
-    
-    elif type == 'double':
+    return_type = ctx.TYPE().getText()
+    name = ctx.ID().getText()
+    params = []
+    if ctx.formalParameters():
+        for param in ctx.formalParameters().formalParameter():
+            param_type = param.TYPE().getText()
+            param_name = param.ID().getText()
+            params.append((param_type, param_name))
+    body = self.visit(ctx.block())
+    return (return_type, name, params, body)
       
-  
-  # def visitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
-  
-  # def visitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+  def visitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
+    if ctx.expr():
+        return ('return', self.visit(ctx.expr()))
+    else:
+        return ('return', None)
     
-  # def visitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
-    
-  # def visitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+  def visitCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
+    return ('call', self.visit(ctx.expr()))
   
-  # def visitExprList(self, ctx:MyGrammarParser.ExprListContext):
+  def visitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
+    name = ctx.ID().getText()
+    args = []
+    if ctx.exprList():
+        for expr in ctx.exprList().expr():
+            args.append(self.visit(expr))
+    return ('exprFuncCall', name, args)
+
+  def visitBlock(self, ctx:MyGrammarParser.BlockContext):
+    statements = []
+    for statement in ctx.statement():
+        statements.append(self.visit(statement))
+    return statements
+
+  def visitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
+      params = []
+      for param in ctx.formalParameter():
+          param_type = param.TYPE().getText()
+          param_name = param.ID().getText()
+          params.append((param_type, param_name))
+      return params
+
+  def visitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
+      param_type = ctx.TYPE().getText()
+      param_name = ctx.ID().getText()
+      return (param_type, param_name)
   
-  
+  def visitExprList(self, ctx:MyGrammarParser.ExprListContext):
+    exprs = []
+    for expr in ctx.expr():
+        exprs.append(self.visit(expr))
+    return exprs  
   
   def visitText(self, ctx:MyGrammarParser.TextContext):
     return ctx.getText()
