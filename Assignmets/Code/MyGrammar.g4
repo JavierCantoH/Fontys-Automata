@@ -29,7 +29,7 @@ expr:   ID OPENPARENS exprList? CLOSINGPARENS                       # exprFuncCa
     |   TEXT				                                        # text // code in main   
     ;
 
-functionDecl: TYPE ID OPENPARENS formalParameters? CLOSINGPARENS OPENCURLYB statement* ; // code in main, "void f(int x) {...}"
+functionDecl: TYPE ID OPENPARENS formalParameters? block ; // code in main, "void f(int x) {...}"
 
 block: OPENCURLYB statement* CLOSINGCURLYB ; // code in main, {print x}
 
