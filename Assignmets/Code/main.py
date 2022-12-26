@@ -6,13 +6,6 @@ from dist.MyGrammarVisitor import MyGrammarVisitor
 
 variable_dictionary = {}
 
-# int sum(int x, int y){
-#     double z = x + y;
-#     return z;
-# }
-
-# sum(5, 10.5)
-
 class Evaluate(MyGrammarVisitor):
   
   def visitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):

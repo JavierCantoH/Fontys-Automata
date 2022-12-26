@@ -2,7 +2,7 @@ grammar MyGrammar;
 
 //rules
 
-prog: statement+;
+prog: statement*;
 
 statement:  functionDecl                        # functionDeclaration
          |  RETURN expr? SEMICOLON              # returnFunc  // code in main
@@ -29,7 +29,7 @@ expr:   ID OPENPARENS exprList? CLOSINGPARENS                       # exprFuncCa
     |   TEXT				                                        # text // code in main   
     ;
 
-functionDecl: TYPE ID OPENPARENS formalParameters? block ; // code in main, "void f(int x) {...}"
+functionDecl: TYPE ID OPENPARENS formalParameters? CLOSINGPARENS block ; // code in main, "void f(int x) {...}"
 
 block: OPENCURLYB statement* CLOSINGCURLYB ; // code in main, {print x}
 

@@ -1,12 +1,9 @@
-int x ;
-print x
-x = 5;
-print x
-print y
-float y = 10.9;
-print y
-int sum(int e, int t){
-    int z = e + t;
-    return z;
+int x = 10;
+int y = 5;
+
+sum(x, y);
+
+int sum(int z, int w){
+    int k = z + w ;
+    return k ;
 }
-print sum(10, 5)
