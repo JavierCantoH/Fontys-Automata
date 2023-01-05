@@ -9,59 +9,36 @@ variable_dictionary = {}
 class Evaluate(MyGrammarVisitor):
   
   def visitFunctionDecl(self, ctx:MyGrammarParser.FunctionDeclContext):
-    return_type = ctx.TYPE().getText()
-    name = ctx.ID().getText()
-    params = []
-    if ctx.formalParameters():
-        for param in ctx.formalParameters().formalParameter():
-            param_type = param.TYPE().getText()
-            param_name = param.ID().getText()
-            params.append((param_type, param_name))
-    body = self.visit(ctx.block())
-    return (return_type, name, params, body)
-      
+    func_name = ctx.ID().getText()
+    if func_name in variable_dictionary:
+      raise Exception(f"Function {func_name} already defined")
+    else:
+      variable_dictionary[func_name] = ctx
+    return self.visit(ctx.block())
+
+  def visitCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
+    func_name = ctx.ID().getText()
+    if func_name in variable_dictionary:
+      func_decl = variable_dictionary[func_name]
+      func_args = self.visit(func_decl.formalParameters())
+      provided_args = self.visit(ctx.exprList())
+      if len(func_args) == len(provided_args):
+        for i in range(len(func_args)):
+          arg_name = func_args[i].ID().getText()
+          arg_value = provided_args[i]
+          variable_dictionary[arg_name] = arg_value
+        return self.visit(ctx.block())
+      else:
+        raise Exception(f"Function {func_name} expects {len(func_args)} arguments, but {len(provided_args)} were provided")
+    else:
+      raise Exception(f"Function {func_name} is not defined")
+  
   def visitReturnFunc(self, ctx:MyGrammarParser.ReturnFuncContext):
     if ctx.expr():
-        return ('return', self.visit(ctx.expr()))
+      return self.visit(ctx.expr()) 
     else:
-        return ('return', None)
-    
-  def visitCallingFunc(self, ctx:MyGrammarParser.CallingFuncContext):
-    return ('call', self.visit(ctx.expr()))
-  
-  def visitExprFuncCall(self, ctx:MyGrammarParser.ExprFuncCallContext):
-    name = ctx.ID().getText()
-    args = []
-    if ctx.exprList():
-        for expr in ctx.exprList().expr():
-            args.append(self.visit(expr))
-    return ('exprFuncCall', name, args)
+      return None
 
-  def visitBlock(self, ctx:MyGrammarParser.BlockContext):
-    statements = []
-    for statement in ctx.statement():
-        statements.append(self.visit(statement))
-    return statements
-
-  def visitFormalParameters(self, ctx:MyGrammarParser.FormalParametersContext):
-      params = []
-      for param in ctx.formalParameter():
-          param_type = param.TYPE().getText()
-          param_name = param.ID().getText()
-          params.append((param_type, param_name))
-      return params
-
-  def visitFormalParameter(self, ctx:MyGrammarParser.FormalParameterContext):
-      param_type = ctx.TYPE().getText()
-      param_name = ctx.ID().getText()
-      return (param_type, param_name)
-  
-  def visitExprList(self, ctx:MyGrammarParser.ExprListContext):
-    exprs = []
-    for expr in ctx.expr():
-        exprs.append(self.visit(expr))
-    return exprs  
-  
   def visitText(self, ctx:MyGrammarParser.TextContext):
     return ctx.getText()
   
@@ -82,7 +59,8 @@ class Evaluate(MyGrammarVisitor):
     if id in variable_dictionary:
       value = variable_dictionary[id]
       return value
-    return None
+    else:
+      raise Exception(f"Identifier {id} is not defined")
 
   def visitAssignExpr(self, ctx:MyGrammarParser.AssignExprContext):
     id = ctx.ID().getText()
@@ -90,21 +68,31 @@ class Evaluate(MyGrammarVisitor):
       value = self.visit(ctx.expr()) 
       variable_dictionary[id] = value
     else:
-      print("please specify the variable type")
+      print("Please specify the variable type")
   
   def visitAssign(self, ctx:MyGrammarParser.AssignContext):
     id = ctx.ID().getText()
-    
-    if ctx.EQUAL() and (ctx.TYPE().getText() == 'int' or ctx.TYPE().getText() == 'float'):
-        value = self.visit(ctx.expr()) 
+    if ctx.TYPE().getText() == 'int':
+      if ctx.EQUAL():
+        value = self.visit(ctx.expr())
         variable_dictionary[id] = value
+      else:
+        variable_dictionary[id] = 0
+    elif ctx.TYPE().getText() == 'float':
+      if ctx.EQUAL():
+        value = self.visit(ctx.expr())
+        variable_dictionary[id] = value
+      else:
+        variable_dictionary[id] = 0.0
     else:
-      variable_dictionary[id] = None
-    return 0
+      raise Exception(f"Unsupported type {ctx.TYPE().getText()}")
 
   def visitPrint(self, ctx:MyGrammarParser.PrintContext):
-    print(self.visitChildren(ctx))
-    return self.visitChildren(ctx)
+    # print(self.visitChildren(ctx))
+    # return self.visitChildren(ctx)
+    value = self.visit(ctx.expr())
+    print(value)
+    return value
     
   def visitPrintLine(self, ctx:MyGrammarParser.PrintContext):
     value = self.visit(ctx.expr())

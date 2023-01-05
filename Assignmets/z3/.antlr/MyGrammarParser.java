@@ -1,4 +1,4 @@
-// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/Z3/MyGrammar.g4 by ANTLR 4.9.2
+// Generated from /Users/javiercanto/Desktop/Automata/Assignmets/z3/MyGrammar.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;

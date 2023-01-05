@@ -35,21 +35,21 @@ class MyGrammarListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#check_sat.
-    def enterCheck_sat(self, ctx:MyGrammarParser.Check_satContext):
+    # Enter a parse tree produced by MyGrammarParser#checksat.
+    def enterChecksat(self, ctx:MyGrammarParser.ChecksatContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#check_sat.
-    def exitCheck_sat(self, ctx:MyGrammarParser.Check_satContext):
+    # Exit a parse tree produced by MyGrammarParser#checksat.
+    def exitChecksat(self, ctx:MyGrammarParser.ChecksatContext):
         pass
 
 
-    # Enter a parse tree produced by MyGrammarParser#get_model.
-    def enterGet_model(self, ctx:MyGrammarParser.Get_modelContext):
+    # Enter a parse tree produced by MyGrammarParser#getmodel.
+    def enterGetmodel(self, ctx:MyGrammarParser.GetmodelContext):
         pass
 
-    # Exit a parse tree produced by MyGrammarParser#get_model.
-    def exitGet_model(self, ctx:MyGrammarParser.Get_modelContext):
+    # Exit a parse tree produced by MyGrammarParser#getmodel.
+    def exitGetmodel(self, ctx:MyGrammarParser.GetmodelContext):
         pass
 
 

@@ -1,9 +1,9 @@
-int x = 10;
-int y = 5;
-
-sum(x, y);
-
 int sum(int z, int w){
     int k = z + w ;
     return k ;
 }
+
+int x = 10;
+int y = 5;
+int h = sum(x, y);
+print h

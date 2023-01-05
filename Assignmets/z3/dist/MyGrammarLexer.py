@@ -78,10 +78,10 @@ class MyGrammarLexer(Lexer):
     INT = 12
     ID = 13
     NUMBER = 14
-    ASSERT = 15
+    ASSERTWORD = 15
     DISTINCT = 16
-    CHECKSAT = 17
-    GETMODEL = 18
+    CHECKSATWORD = 17
+    GETMODELWORD = 18
     WS = 19
 
     channelNames = [ u"DEFAULT_TOKEN_CHANNEL", u"HIDDEN" ]
@@ -96,13 +96,13 @@ class MyGrammarLexer(Lexer):
     symbolicNames = [ "<INVALID>",
             "SEMICOLON", "GREATER", "LESS", "GREATER_EQUAL", "LESS_EQUAL", 
             "BOOLEAN_EQUAL", "AND", "OR", "OPENPARENS", "CLOSINGPARENS", 
-            "DECLAREFUN", "INT", "ID", "NUMBER", "ASSERT", "DISTINCT", "CHECKSAT", 
-            "GETMODEL", "WS" ]
+            "DECLAREFUN", "INT", "ID", "NUMBER", "ASSERTWORD", "DISTINCT", 
+            "CHECKSATWORD", "GETMODELWORD", "WS" ]
 
     ruleNames = [ "SEMICOLON", "GREATER", "LESS", "GREATER_EQUAL", "LESS_EQUAL", 
                   "BOOLEAN_EQUAL", "AND", "OR", "OPENPARENS", "CLOSINGPARENS", 
-                  "DECLAREFUN", "INT", "ID", "NUMBER", "ASSERT", "DISTINCT", 
-                  "CHECKSAT", "GETMODEL", "WS" ]
+                  "DECLAREFUN", "INT", "ID", "NUMBER", "ASSERTWORD", "DISTINCT", 
+                  "CHECKSATWORD", "GETMODELWORD", "WS" ]
 
     grammarFileName = "MyGrammar.g4"
 
