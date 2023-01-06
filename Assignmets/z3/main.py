@@ -1,128 +1,92 @@
-# antlr -Dlanguage=Python3 MyGrammar.g4 -o dist 
+# antlr -Dlanguage=Python3 MyGrammar2.g4 -o dist 
 import z3
 from antlr4 import *
-from dist.MyGrammarLexer import MyGrammarLexer
-from dist.MyGrammarParser import MyGrammarParser
-from dist.MyGrammarListener import MyGrammarListener
+from dist.MyGrammar2Lexer import MyGrammar2Lexer
+from dist.MyGrammar2Parser import MyGrammar2Parser
+from dist.MyGrammar2Listener import MyGrammar2Listener
 
-class Evaluate(MyGrammarListener):
-  def __init__(self):
-    self.solver = z3.Solver()
-    self.variables = {}
+class Evaluate(MyGrammar2Listener):
+    def __init__(self):
+        self.solver = z3.Solver()
+        self.variables = {}
+        self.assertions = []
 
-  def enterDeclaration(self, ctx):
-    # Process a declaration
-    var_name = ctx.ID().getText()
-    # Add a Z3 Int variable to the solver
-    self.variables[var_name] = z3.Int(var_name)
-    self.solver.add(self.variables[var_name])
+    def enterDeclare_fun(self, ctx:MyGrammar2Parser.Declare_funContext):
+        var_name = ctx.ID().getText()
+        self.variables[var_name] = z3.Int(var_name)
 
-  def enterCheck_sat(self, ctx):
-    # Check if the constraints are satisfiable
-    print(self.solver.check())
+    def enterAssert_cmd(self, ctx:MyGrammar2Parser.Assert_cmdContext):
+        # Evaluate the formula and add it as an assertion to the solver
+        formula = self.evaluate_formula(ctx.formula())
+        self.assertions.append(formula)
+        self.solver.add(formula)
+    
+    def evaluate_formula(self, ctx:MyGrammar2Parser.FormulaContext):
+        if ctx.distinct_formula():
+            # Handle distinct formula
+            values = [self.evaluate_values(v) for v in ctx.distinct_formula().values()]
+            return z3.Distinct(*values)
+        elif ctx.comp():
+            # Handle compound formula
+            left = self.evaluate_formula(ctx.formula(0))
+            right = self.evaluate_formula(ctx.formula(1))
+            if ctx.comp().getText() == 'and':
+                return z3.And(left, right)
+            else:
+                return z3.Or(left, right)
+        elif ctx.comparator():
+            # Handle comparator formula
+            left = self.evaluate_values(ctx.values(0))
+            right = self.evaluate_values(ctx.values(1))
+            comparator = ctx.comparator().getText()
+            if comparator == '>=':
+                return left >= right
+            elif comparator == '<=':
+                return left <= right
+            elif comparator == '<':
+                return left < right
+            elif comparator == '>':
+                return left > right
+            elif comparator == '=':
+                return left == right
+        else:
+            # Handle values
+            return self.evaluate_values(ctx.values())
 
-  def enterGet_model(self, ctx):
-    # Get a model for the constraints
-    if self.solver.check() == z3.sat:
-      print(self.solver.model())
-    else:
-      print("Unsatisfiable")
+    def evaluate_values(self, ctx:MyGrammar2Parser.ValuesContext):
+        if ctx.ID():
+            # Handle identifier
+            id_text = ctx.ID().getText()
+            if id_text in self.variables:
+                # Return a function call if the identifier is a declared function
+                return self.variables[id_text]
+            else:
+                raise ValueError(f"VAL: '{ctx.getText()}' not declared.")
+        elif ctx.NUMBER():
+            # Handle number
+            return z3.Int(ctx.NUMBER().getText())
 
-  def enterAssertion(self, ctx):
-    # Process an assertion
-    # Parse the constraint
-    constraint = self.parse_constraint(ctx.constraint())
-    # Add the constraint to the solver
-    self.solver.add(constraint)
-
-  def parse_constraint(self, ctx):
-    """Recursively parses a constraint according to the grammar rules"""
-    if ctx.DISTINCT():
-      # Parse a distinct constraint
-      var_names = [var.getText() for var in ctx.ID()]
-      return z3.Distinct(*[self.variables[var] for var in var_names])
-    elif ctx.AND():
-      # Parse an and constraint
-      constraint1 = self.parse_constraint(ctx.constraint(0))
-      constraint2 = self.parse_constraint(ctx.constraint(1))
-      return constraint1 and constraint2
-    elif ctx.OR():
-      # Parse an or constraint
-      constraint1 = self.parse_constraint(ctx.constraint(0))
-      constraint2 = self.parse_constraint(ctx.constraint(1))
-      return constraint1 or constraint2
-    elif ctx.GREATER():
-      # Parse a greater than constraint
-      var1 = ctx.ID(0).getText() if ctx.ID(0) else ctx.NUMBER(0).getText()
-      var2 = ctx.ID(1).getText() if ctx.ID(1) else ctx.NUMBER(1).getText()
-      if var1 in self.variables:
-        var1 = self.variables[var1]
-      else:
-        var1 = z3.Int(var1)
-      if var2 in self.variables:
-        var2 = self.variables[var2]
-      else:
-        var2 = z3.Int(var2)
-      return var1 > var2
-    elif ctx.LESS():
-      # Parse a less than constraint
-      var1 = ctx.ID(0).getText() if ctx.ID(0) else ctx.NUMBER(0).getText()
-      var2 = ctx.ID(1).getText() if ctx.ID(1) else ctx.NUMBER(1).getText()
-      if var1 in self.variables:
-        var1 = self.variables[var1]
-      else:
-        var1 = z3.Int(var1)
-      if var2 in self.variables:
-        var2 = self.variables[var2]
-      else:
-        var2 = z3.Int(var2)
-      return var1 < var2
-    elif ctx.GREATER_EQUAL():
-      # Parse a greater equal than constraint
-      var1 = ctx.ID(0).getText() if ctx.ID(0) else ctx.NUMBER(0).getText()
-      var2 = ctx.ID(1).getText() if ctx.ID(1) else ctx.NUMBER(1).getText()
-      if var1 in self.variables:
-        var1 = self.variables[var1]
-      else:
-        var1 = z3.Int(var1)
-      if var2 in self.variables:
-        var2 = self.variables[var2]
-      else:
-        var2 = z3.Int(var2)
-      return var1 >= var2
-    elif ctx.LESS_EQUAL():
-      # Parse a less equal than constraint
-      var1 = ctx.ID(0).getText() if ctx.ID(0) else ctx.NUMBER(0).getText()
-      var2 = ctx.ID(1).getText() if ctx.ID(1) else ctx.NUMBER(1).getText()
-      if var1 in self.variables:
-        var1 = self.variables[var1]
-      else:
-        var1 = z3.Int(var1)
-      if var2 in self.variables:
-        var2 = self.variables[var2]
-      else:
-        var2 = z3.Int(var2)
-      return var1 <= var2
-    elif ctx.BOOLEAN_EQUAL():
-      # Parse an equal than constraint
-      var1 = ctx.ID(0).getText() if ctx.ID(0) else ctx.NUMBER(0).getText()
-      var2 = ctx.ID(1).getText() if ctx.ID(1) else ctx.NUMBER(1).getText()
-      if var1 in self.variables:
-        var1 = self.variables[var1]
-      else:
-        var1 = z3.Int(var1)
-      if var2 in self.variables:
-        var2 = self.variables[var2]
-      else:
-        var2 = z3.Int(var2)
-      return var1 == var2
+    def enterCheck_sat(self, ctx:MyGrammar2Parser.Check_satContext):
+        # Check the satisfiability of the assertions
+        result = self.solver.check()
+        if result == z3.sat:
+            print("Satisfiable")
+        elif result == z3.unsat:
+            print("Unsatisfiable")
+        else:
+            print("Unknown")
+    
+    def exitGet_model(self, ctx:MyGrammar2Parser.Get_modelContext):
+        model = self.solver.model()
+        for d in model.decls():
+            print(f"{d.name()} = {model[d]}")
 
 def main():
-    input_stream = FileStream("input.txt")
-    lexer = MyGrammarLexer(input_stream)
+    input_stream = FileStream("sudokuA.txt")
+    lexer = MyGrammar2Lexer(input_stream)
     stream = CommonTokenStream(lexer)
-    parser = MyGrammarParser(stream)
-    tree = parser.prog()
+    parser = MyGrammar2Parser(stream)
+    tree = parser.program()
     listener = Evaluate()
     walker = ParseTreeWalker().walk(listener, tree)
     return walker
