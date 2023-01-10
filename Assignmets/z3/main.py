@@ -82,7 +82,7 @@ class Evaluate(MyGrammar2Listener):
             print(f"{d.name()} = {model[d]}")
 
 def main():
-    input_stream = FileStream("sudokuA.txt")
+    input_stream = FileStream("input.txt")
     lexer = MyGrammar2Lexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = MyGrammar2Parser(stream)
